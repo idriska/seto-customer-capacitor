@@ -1,0 +1,308 @@
+import { Component, ViewChild, ElementRef, NgZone } from "@angular/core";
+import { ModalController, ToastController, NavParams } from "@ionic/angular";
+import { Address_titlePage } from "../address_title/address_title";
+import { MyLocation } from "../../models/my-location.models";
+import { Address } from "../../models/address.models";
+import { Subscription } from "rxjs";
+import { GoogleMaps } from "../../services/google-maps";
+import { ClientService } from "../../services/client.service";
+import { TranslateService } from "@ngx-translate/core";
+import { Constants } from "../../models/constants.models";
+import { CommonUiElement } from "../../services/app.commonelements";
+import { Geolocation } from "@ionic-native/geolocation/ngx";
+import { RouterWrapperService } from "src/services/router-wrapper.service";
+
+declare const google: any;
+
+@Component({
+  selector: "page-add_address",
+  templateUrl: "add_address.html",
+  providers: [CommonUiElement, ClientService],
+})
+export class Add_addressPage {
+  @ViewChild("map") private mapElement: ElementRef;
+  @ViewChild("pleaseConnect") private pleaseConnect: ElementRef;
+  private latitude: number;
+  private longitude: number;
+  private autocompleteService: any;
+  private placesService: any;
+  private query: string = "";
+  private places: any = [];
+  private searchDisabled: boolean;
+  private saveDisabled: boolean;
+  private initialized: boolean;
+  private location: MyLocation;
+  private marker: google.maps.Marker;
+  private address: Address;
+  private subscriptions: Array<Subscription> = [];
+  private modalPresented = false;
+  private forfoodsearch = false;
+  private addressSaveModal;
+
+  constructor(
+    private navCtrl: RouterWrapperService,
+    private zone: NgZone,
+    private maps: GoogleMaps,
+    private modalCtrl: ModalController,
+    private geolocation: Geolocation,
+    private toastCtrl: ToastController,
+    navparam: NavParams,
+    private global: CommonUiElement,
+    private service: ClientService,
+    private translate: TranslateService
+  ) {
+    // this.menuCtrl.enable(false, 'myMenu');
+    this.searchDisabled = true;
+    this.saveDisabled = true;
+    this.address = navparam.get("address");
+    this.forfoodsearch = navparam.get("forfoodsearch");
+  }
+
+  ionViewWillLeave() {
+    if (this.addressSaveModal) this.addressSaveModal.dismiss();
+    this.subscriptions.forEach((subscription: Subscription) => {
+      subscription.unsubscribe();
+    });
+    this.global.dismissLoading();
+  }
+
+  ionViewDidLoad(): void {
+    if (!this.initialized) {
+      let mapLoaded = this.maps
+        .init(
+          this.mapElement.nativeElement,
+          this.pleaseConnect.nativeElement,
+          JSON.parse(window.localStorage.getItem(Constants.KEY_LOCATION_SOURCE))
+        )
+        .then(() => {
+          this.autocompleteService = new google.maps.places.AutocompleteService();
+          this.placesService = new google.maps.places.PlacesService(
+            this.maps.map
+          );
+          this.searchDisabled = false;
+          this.maps.map.addListener("click", (event) => {
+            if (event && event.latLng) {
+              this.onMapClick(
+                new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())
+              );
+            }
+          });
+          this.initialized = true;
+          if (this.address) {
+            this.onMapClick(
+              new google.maps.LatLng(
+                this.address.latitude,
+                this.address.longitude
+              )
+            );
+          } else {
+            this.detect();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          this.close();
+        });
+      mapLoaded.catch((err) => {
+        console.log(err);
+        this.close();
+      });
+    }
+  }
+
+  onMapClick(pos: google.maps.LatLng) {
+    if (pos) {
+      if (!this.marker) {
+        this.marker = new google.maps.Marker({
+          position: pos,
+          map: this.maps.map,
+        });
+        this.marker.setClickable(true);
+        this.marker.addListener("click", (event) => {
+          console.log("markerevent", event);
+          this.showToast(this.location.name);
+        });
+      } else {
+        this.marker.setPosition(pos);
+      }
+      this.maps.map.panTo(pos);
+
+      let geocoder = new google.maps.Geocoder();
+      let request = { location: pos };
+      geocoder.geocode(request, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
+          this.saveDisabled = false;
+          this.location = new MyLocation();
+          this.location.name = results[0].formatted_address;
+          this.location.lat = String(pos.lat());
+          this.location.lng = String(pos.lng());
+          this.showToast(this.location.name);
+        }
+      });
+    }
+  }
+
+  selectPlace(place) {
+    this.query = place.description;
+    this.places = [];
+    let myLocation = new MyLocation();
+    myLocation.name = place.name;
+    this.placesService.getDetails({ placeId: place.place_id }, (details) => {
+      console.log("details", JSON.stringify(details));
+      this.zone.run(() => {
+        myLocation.name =
+          details.formatted_address && details.formatted_address.length
+            ? details.formatted_address
+            : details.name;
+        myLocation.lat = details.geometry.location.lat();
+        myLocation.lng = details.geometry.location.lng();
+        this.saveDisabled = false;
+        let lc = { lat: myLocation.lat, lng: myLocation.lng };
+        this.maps.map.setCenter(lc);
+        this.location = myLocation;
+        let pos = new google.maps.LatLng(Number(lc.lat), Number(lc.lng));
+        if (!this.marker)
+          this.marker = new google.maps.Marker({
+            position: pos,
+            map: this.maps.map,
+          });
+        else this.marker.setPosition(pos);
+        this.maps.map.panTo(pos);
+      });
+    });
+  }
+
+  searchPlace() {
+    this.saveDisabled = true;
+    if (this.query.length > 0 && !this.searchDisabled) {
+      let config = {
+        input: this.query,
+        componentRestrictions: { country: "AT" },
+      };
+      this.autocompleteService.getPlacePredictions(
+        config,
+        (predictions, status) => {
+          if (
+            status == google.maps.places.PlacesServiceStatus.OK &&
+            predictions
+          ) {
+            this.places = [];
+            predictions.forEach((prediction) => {
+              this.places.push(prediction);
+            });
+          }
+        }
+      );
+    } else {
+      this.places = [];
+    }
+  }
+
+  detect() {
+    this.geolocation
+      .getCurrentPosition()
+      .then((position) => {
+        this.onMapClick(
+          new google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          )
+        );
+      })
+      .catch((err) => {
+        console.log("getCurrentPosition", err);
+        this.showToast("Location detection failed");
+      });
+  }
+
+  async save() {
+    if (this.location) {
+      window.localStorage.setItem(
+        Constants.KEY_LOCATION,
+        JSON.stringify(this.location)
+      );
+      if (this.forfoodsearch) {
+        this.close();
+      } else {
+        if (!this.address) this.address = new Address();
+        this.address.latitude = Number(this.location.lat);
+        this.address.longitude = Number(this.location.lng);
+        this.address.address = this.location.name;
+        this.addressSaveModal = await this.modalCtrl.create({
+          component: Address_titlePage,
+          componentProps: { address: this.address },
+        });
+        this.addressSaveModal.present();
+        this.addressSaveModal.onDidDismiss((data) => {
+          this.modalPresented = false;
+          this.address = data;
+          this.saveAddress();
+        });
+        this.modalPresented = true;
+      }
+    }
+  }
+
+  saveAddress() {
+    if (!this.address.title) {
+      this.translate.get("address_title_err").subscribe((value) => {
+        this.global.showToast(value);
+      });
+      // this.global.showToast("Please enter address title");
+    } else if (!this.address.address) {
+      this.translate.get("address_title_err1").subscribe((value) => {
+        this.global.showToast(value);
+      });
+      // this.global.showToast("Please enter address");
+    } else if (
+      !(Number(this.address.latitude) && Number(this.address.longitude))
+    ) {
+      this.translate.get("address_latlng_err").subscribe((value) => {
+        this.global.showToast(value);
+      });
+      // this.global.showToast("Please enter address");
+    } else {
+      this.translate.get("address_saving").subscribe((value) => {
+        this.global.presentLoading(value);
+        this.subscriptions.push(
+          this.address && this.address.id
+            ? this.service
+                .updateAddress(this.address.id, this.address)
+                .subscribe(
+                  (res) => this.done(res),
+                  (err) => this.failed(err)
+                )
+            : this.service.saveAddress(this.address).subscribe(
+                (res) => this.done(res),
+                (err) => this.failed(err)
+              )
+        );
+      });
+    }
+  }
+
+  failed(err) {
+    this.global.dismissLoading();
+    console.log("address", err);
+    this.close();
+  }
+
+  done(res) {
+    window.localStorage.setItem(Constants.ADDRESS_EVENT, JSON.stringify(res));
+    this.global.dismissLoading();
+    this.close();
+  }
+
+  close() {
+    this.navCtrl.pop();
+  }
+
+  async showToast(message: string) {
+    let toast = await this.toastCtrl.create({
+      message: message,
+      duration: 2500,
+      position: "bottom",
+    });
+    toast.present();
+  }
+}

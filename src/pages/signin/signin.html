@@ -1,0 +1,38 @@
+<ion-header class="theme_header">
+    <ion-toolbar>
+        <ion-title>
+            <span style="display: block; font-size: 1.3em; margin-top: 0.83em; margin-bottom: 0.83em; margin-left: 0; margin-right: 0; font-weight: bold;" [innerHTML]="'signin_heading' | translate"></span>
+            <p>{{'signin_with_phone_number' | translate}}</p>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <div class="form">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label floating>{{'select_country' | translate}}</ion-label>
+                <ion-select [(ngModel)]="countryCode" multiple="false" class="text-thime" disabled="false">
+                    <ion-select-option [value]="country.callingCodes[0]" *ngFor="let country of countries">{{country.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{'enter_phone_number' | translate}}</ion-label>
+                <ion-input placeholder="660123456" [(ngModel)]="phoneNumber" type="tel" ></ion-input>
+            </ion-item>
+        </ion-list>
+    </div>
+    <ion-row>
+        <!-- <ion-col col-6 no-padding>
+            <button ion-button full no-margin text-uppercase clear (click)="signup()" class="btn">
+                {{'new_user' | translate}}
+            </button>
+        </ion-col> -->
+        <ion-col no-padding>
+            <ion-button expand="full" class="btn ion-no-margin" (click)="alertPhone()">
+                {{'sign_in' | translate}}
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-content>

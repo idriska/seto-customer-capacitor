@@ -1,0 +1,7 @@
+{
+  "name": "SETO-CUSTOMER-CAPACITOR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

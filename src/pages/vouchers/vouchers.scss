@@ -1,0 +1,102 @@
+page-vouchers {
+    .header {
+        .toolbar {
+            .toolbar-content {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 19px;
+
+                .title {
+                    .toolbar-title {
+                        text-align: center;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+
+    .list {
+        margin: 0;
+
+        .item {
+            background: #fff;
+            margin: 0 auto;
+            width: calc(100% - 43px);
+            margin-bottom: 6px;
+            border-radius: 9px;
+            padding: 18px 13px;
+            min-height: unset;
+            align-items: flex-start;
+
+            .item-inner {
+                align-items: center;
+                padding: 0;
+
+                .label {
+                    margin: 0;
+                    white-space: normal;
+
+                    h2 {
+                        margin: 0;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        font-size: 1.4rem;
+                        letter-spacing: 1px;
+                        padding-bottom: 7px;
+                    }
+
+                    p {
+                        margin: 0;
+                        color: $gray;
+                        font-size: 1.3rem;
+                        letter-spacing: 0.3px;
+                    }
+                }
+
+                h3 {
+                    margin: 0;
+                    border: 1.5px dashed $bg-color;
+                    color: $theme-color;
+                    border-radius: 50px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 1.5rem;
+                    padding: 8px 15px;
+                    min-width: 98px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .empty-view {
+        width: 200px;
+        margin: auto;
+        height: 200px;
+        top: 10%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10%;
+
+        img {
+            width: 100px;
+            margin: auto;
+        }
+
+        span {
+            display: block;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 50px;
+
+            span {
+                display: unset !important;
+            }
+        }
+    }
+}

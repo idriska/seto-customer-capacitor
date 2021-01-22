@@ -1,0 +1,52 @@
+<ion-header class="bg-color">
+    <ion-toolbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            {{titleToShow}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="empty-view" *ngIf="!isLoading && (!myCards || !myCards.length)">
+        <div style="text-align:center">
+            <img src="assets/imgs/empty_list.png" alt="no offers" />
+            <span style="color:#9E9E9E; font-weight:bold;">{{'empty_cards' | translate}}</span>
+        </div>
+    </div>
+    <div class="card_list">
+        <ion-card *ngFor="let card of myCards"
+            [ngClass]="(card.metadata && card.metadata.title == 'business') ? 'Business' : ''"
+            (click)="navAddCard(card)">
+            <div class="card_header d-flex">
+                <div class="card_chip">
+                    <img src="assets/imgs/chip.png">
+                </div>
+                <h2 class="end">
+                    {{ ((card.metadata && card.metadata.title == 'business') ? 'card_business' : 'card_personal') | translate}}
+                </h2>
+            </div>
+            <div class="card_content">
+                <h2>**** **** **** {{card.last4}}</h2>
+            </div>
+            <div class="card_footer">
+                <h3 class="d-flex">
+                    {{'card_holder_name' | translate}}
+                    <span class="end"> {{'valid_thruc' | translate}}</span>
+                </h3>
+                <h4 class="d-flex">
+                    {{card.name}}
+                    <span class="end"> {{card.exp_month}}/{{card.exp_year}}</span>
+                </h4>
+            </div>
+        </ion-card>
+    </div>
+</ion-content>
+
+<ion-footer no-border>
+    <button ion-button full no-margin text-uppercase item-start class="btn" (click)="navAddCard(null)">
+        <ion-icon class="material-icons">add</ion-icon> {{'add_new_card' | translate}}
+    </button>
+</ion-footer>

@@ -1,0 +1,61 @@
+<!--
+<ion-header>
+    <ion-toolbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title > </ion-title>
+    </ion-toolbar>
+</ion-header>
+-->
+<!--
+
+<ion-content >
+   
+</ion-content>
+-->
+
+<ion-footer no-border>
+    <div class="form">
+        <!--        <ion-icon class="material-icons dismiss" (click)="dismiss()">clear</ion-icon>-->
+        <ion-list no-lines>
+            <h2>{{'select_address_type' | translate}}</h2>
+            <ion-row radio-group [(ngModel)]="address.title">
+                <ion-col col-4>
+                    <ion-item>
+                        <ion-label>
+                            <ion-icon class="material-icons">home</ion-icon>
+                            <h4>{{'home' | translate}}</h4>
+                        </ion-label>
+                        <ion-radio value="home"></ion-radio>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-4>
+                    <ion-item>
+                        <ion-label>
+                            <ion-icon class="material-icons">business</ion-icon>
+                            <h4>{{'office' | translate}}</h4>
+                        </ion-label>
+                        <ion-radio value="office"></ion-radio>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-4>
+                    <ion-item>
+                        <ion-label>
+                            <ion-icon class="material-icons">place</ion-icon>
+                            <h4>{{'other' | translate}}</h4>
+                        </ion-label>
+                        <ion-radio value="other"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-item>
+                <ion-icon class="material-icons" item-start>place</ion-icon>
+                <ion-input type="text" [(ngModel)]="address.address"></ion-input>
+            </ion-item>
+        </ion-list>
+    </div>
+    <button ion-button ion-text-uppercase no-margin full class="btn"
+        (click)="dismiss()">{{'save_address' | translate}}</button>
+</ion-footer>

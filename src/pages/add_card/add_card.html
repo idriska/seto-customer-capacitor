@@ -1,0 +1,75 @@
+<ion-header class="theme_header bg-color">
+    <ion-toolbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            <h2 *ngIf="card == null">{{'add_business_card' | translate}}</h2>
+            <h2 *ngIf="card!=null">{{ ((card.metadata && card.metadata.title == 'business') ? 'card_business' : 'card_personal') | translate}} {{"card" | translate}}</h2>
+            <p *ngIf="card == null">{{'add_card_information' | translate}}</p>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="form">
+        <ion-list no-lines>
+            <!--			<h2>{{'enter_bank_info' | translate}}</h2>-->
+            <div class="form_container">
+                <ion-item>
+                    <ion-label floating>{{"card_number" | translate}}</ion-label>
+                    <ion-input type="text" [disabled]="card!=null" [(ngModel)]="cardRequest.number"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{"car_exp_month" | translate}}</ion-label>
+                    <ion-input type="text" [disabled]="card!=null" maxlength="2" minlength="2"
+                        [(ngModel)]="cardRequest.exp_month"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{"car_exp_year" | translate}}</ion-label>
+                    <ion-input type="text" [disabled]="card!=null" maxlength="2" minlength="2"
+                        [(ngModel)]="cardRequest.exp_year"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{"security_code" | translate}}</ion-label>
+                    <ion-input type="text" [disabled]="card!=null" [(ngModel)]="cardRequest.cvc"></ion-input>
+                </ion-item>
+                <div *ngIf="card == null" class="card_type">
+                    <h2>{{"card_type" | translate}}</h2>
+                    <ion-row radio-group [(ngModel)]="cardRequest.title">
+                        <ion-col col-6>
+                            <ion-item>
+                                <ion-radio value="personal" item-start></ion-radio>
+                                <ion-label>{{"card_personal" | translate}}</ion-label>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col col-6>
+                            <ion-item>
+                                <ion-radio value="business" item-start></ion-radio>
+                                <ion-label>{{"card_business" | translate}}</ion-label>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+                <ion-item>
+                    <ion-label floating>{{"card_holder_name" | translate}}</ion-label>
+                    <ion-input type="text" [disabled]="card!=null" [(ngModel)]="cardRequest.name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{"professional_email_address" | translate}}</ion-label>
+                    <ion-input type="email" [disabled]="card!=null" [(ngModel)]="cardRequest.email"></ion-input>
+                </ion-item>
+                <p>{{"when_payment_done_by_this_card_user_will_get_invoice_on_adbove_given_email_adddress" | translate}}.
+                </p>
+            </div>
+        </ion-list>
+    </div>
+
+</ion-content>
+<ion-footer no-border>
+    <button ion-button full no-margin text-uppercase item-start class="btn" (click)="confirm()">
+        {{ (card == null ? 'save_card' : 'delete_card') | translate}}
+    </button>
+</ion-footer>

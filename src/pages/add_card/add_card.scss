@@ -1,0 +1,56 @@
+page-add_card {
+    ion-header {
+        padding-bottom: 20px !important;
+    }
+
+    .form {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        p {
+            margin: 0;
+            color: $gray;
+            font-size: 1.35rem;
+            letter-spacing: 0.3px;
+            max-width: calc(100% - 21px);
+        }
+
+        .card_type {
+            border-bottom: 1px solid #000000 !important;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            margin-bottom: 13px;
+
+            h2 {
+                font-size: 1.9rem;
+                color: #686868;
+                text-transform: none;
+                opacity: 1 !important;
+                margin: 0px;
+                margin-bottom: 11px;
+                letter-spacing: 0px; 
+                font-weight: 400;
+            }
+
+            ion-row {
+                ion-col {
+                    .item {
+                        border-bottom: none !important;
+                        margin: 0;
+
+                        .radio {
+                            margin: 0;
+                            margin-right: 12px;
+                        }
+
+                        .label {
+                            margin: 0;
+                            font-size: 1.5rem;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

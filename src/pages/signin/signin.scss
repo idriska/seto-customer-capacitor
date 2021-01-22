@@ -1,0 +1,41 @@
+// page-signin {
+//     .header.theme_header .toolbar .title .toolbar-title span {
+//         margin-top: 15px;
+//     }
+
+//     .form {
+//         margin-top: 20px;
+
+//         .list {
+//             padding-top: 68px;
+//             padding-bottom: 30px;
+//         }
+//     }
+//     .input-cover{
+//         display: none;
+//       }
+
+// }
+
+
+:host {
+  .header.theme_header .toolbar .title .toolbar-title span {
+    margin-top: 15px;
+  }
+
+  .form {
+    margin-top: 20px;
+
+    .list {
+      padding-top: 68px;
+      padding-bottom: 30px;
+    }
+  }
+  .input-cover {
+    display: none;
+  }
+
+  .btn {
+    text-transform: uppercase;
+  }
+}
