@@ -1,35 +1,35 @@
-page-help {
-    .header.theme_header {
+:host {
+    ion-header {
         padding-bottom: 20px;
 
-        .toolbar .title .toolbar-title p {
+        ion-toolbar ion-title p {
             margin-top: 2px;
         }
     }
 
-    .scroll-content {
-        background: $item_bg;
+    ion-content {
+        background: var(--item_bg);
     }
 
-    .list {
+    ion-list {
         padding-top: 20px;
         margin: 0;
 
-        .item {
+        ion-item {
             background: none;
             width: calc(100% - 40px);
             margin: 0 auto;
             padding: 12px 0;
 
-            .item-inner {
-                padding: 0;
+            --inner-padding-end: 0px;
+            --padding-start:0px;
 
                 .label {
                     margin: 0;
                     white-space: normal;
 
                     h2 {
-                        color: $white;
+                        color: var(--white);
                         font-size: 1.45rem;
                         white-space: nowrap;
                         text-overflow: ellipsis;
@@ -40,7 +40,7 @@ page-help {
                         margin-bottom: 4px;
 
                         ion-icon {
-                            color: $theme-color;
+                            color: var(--theme-color);
                             font-size: 1.4rem;
                         }
                     }
@@ -48,18 +48,18 @@ page-help {
                     h3 {
                         margin: 0;
                         font-size: 1.3rem;
-                        color: $info;
+                        color: var(--info);
                     }
 
                     p {
                         font-size: 1.3rem;
-                        color: lighten($info, 10%);
+                        // color: lighten($info, 10%);
                         padding-top: 10px;
                         line-height: 19px;
                         display: none;
                     }
                 }
-            }
+            
 
             &.active {
                 p {

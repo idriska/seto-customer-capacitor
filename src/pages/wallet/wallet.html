@@ -1,7 +1,7 @@
 <ion-header class="theme_header">
 	<ion-toolbar>
-		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
+		<button ion-button>
+			<ion-menu-button></ion-menu-button>
 		</button>
 		<ion-title>
 			<p>{{'available_qmoney_amount' | translate}}</p>
@@ -10,7 +10,7 @@
 	</ion-toolbar>
 	<ion-row>
 		<ion-col col-6 no-padding>
-			<button ion-button full no-margin text-uppercase clear class="btn" (click)="sendMoney()">
+			<button ion-button full no-margin text-uppercase expand="full" class="btn" (click)="sendMoney()">
 				{{'send_to_bank' | translate}}
 			</button>
 		</ion-col>

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from "@angular/core";
-import { ModalController, ToastController, NavParams } from "@ionic/angular";
+import { ModalController, ToastController } from "@ionic/angular";
 import { Address_titlePage } from "../address_title/address_title";
 import { MyLocation } from "../../models/my-location.models";
 import { Address } from "../../models/address.models";
@@ -46,7 +46,6 @@ export class Add_addressPage {
     private modalCtrl: ModalController,
     private geolocation: Geolocation,
     private toastCtrl: ToastController,
-    navparam: NavParams,
     private global: CommonUiElement,
     private service: ClientService,
     private translate: TranslateService
@@ -54,8 +53,12 @@ export class Add_addressPage {
     // this.menuCtrl.enable(false, 'myMenu');
     this.searchDisabled = true;
     this.saveDisabled = true;
-    this.address = navparam.get("address");
-    this.forfoodsearch = navparam.get("forfoodsearch");
+
+    this.address = this.navCtrl.getData("address")
+    this.forfoodsearch = this.navCtrl.getData("forfoodsearch")
+
+    // this.address = navparam.get("address");
+    // this.forfoodsearch = navparam.get("forfoodsearch");
   }
 
   ionViewWillLeave() {

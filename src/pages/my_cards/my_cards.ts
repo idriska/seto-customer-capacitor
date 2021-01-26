@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NavParams } from '@ionic/angular';
-import { Add_cardPage } from '../add_card/add_card';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { ClientService } from '../../services/client.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,9 +21,9 @@ export class My_cardsPage {
   pick = false;
 
   constructor(public navCtrl: RouterWrapperService, private global: CommonUiElement,
-    private service: ClientService, private translate: TranslateService, navParams: NavParams) {
-    this.pick = navParams.get("pick");
-    this.payment_method = navParams.get("payment_method");
+    private service: ClientService, private translate: TranslateService) {
+    this.pick = this.navCtrl.getData("pick")
+    this.payment_method = this.navCtrl.getData("payment_method")
     this.translate.get(this.pick && this.payment_method && this.payment_method.length ? (this.payment_method.includes("business") ? "business_card_select" : "personal_card_select") : "my_card").subscribe(value => this.titleToShow = value);
   }
 

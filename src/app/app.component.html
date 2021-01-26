@@ -2,14 +2,15 @@
   <ion-menu *ngIf="rtlSide == 'left'" side="start" contentId="content" (ionOpen)="menuOpened()">
     <ion-header>
         <ion-toolbar>
-            <button ion-button menuToggle>
-                <ion-icon class="material-icons">clear</ion-icon>
-            </button>
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+                <!-- <ion-icon class="material-icons">clear</ion-icon> -->
+            </ion-button>
             <ion-title></ion-title>
         </ion-toolbar>
         <div class="profile_box d-flex">
             <div class="profile_img center_img">
-                <img *ngIf="!userMe || !userMe.image_url || !userMe.image_url.length" src="assets/imgs/logo.png"
+                <img *ngIf="!userMe || !userMe.image_url || !userMe.image_url.length" src="../assets/imgs/logo.png"
                     class="crop_img">
                 <img *ngIf="userMe && userMe.image_url && userMe.image_url.length" data-src="{{userMe.image_url}}"
                     class="crop_img">
@@ -28,64 +29,46 @@
     </ion-header>
 
     <ion-content class="bg-color" fullscreen="true">
-        <ion-list no-lines>
+        <ion-list lines="none">
             <ion-item *ngIf="userMe" menuClose (click)="home()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">home</ion-icon>
+                    <ion-icon name="home-sharp"></ion-icon>
                 </ion-avatar>
                 <h2>{{'home' | translate}}</h2>
             </ion-item>
-            <!-- <ion-item menuClose (click)="my_profile()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">account_box</ion-icon>
-                </ion-avatar>
-                <h2>{{'my_profile' | translate}}</h2>
-            </ion-item> -->
             <ion-item *ngIf="userMe" menuClose (click)="my_card()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">payment</ion-icon>
+                    <ion-icon name="card-outline"></ion-icon>
                 </ion-avatar>
                 <h2>{{'my_card' | translate}}</h2>
             </ion-item>
             <ion-item *ngIf="userMe" menuClose (click)="saved_address()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">location_on</ion-icon>
+                    <ion-icon name="location-sharp"></ion-icon>
                 </ion-avatar>
                 <h2>{{'my_address' | translate}}</h2>
             </ion-item>
             <ion-item *ngIf="userMe" menuClose (click)="my_trips()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">directions_car</ion-icon>
+                    <ion-icon name="car-sport"></ion-icon>
                 </ion-avatar>
                 <h2>{{'my_rides' | translate}}</h2>
             </ion-item>
             <ion-item *ngIf="userMe" menuClose (click)="vouchers()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">loyalty</ion-icon>
+                    <ion-icon name="pricetags"></ion-icon>
                 </ion-avatar>
                 <h2>{{'vouchers' | translate}}</h2>
             </ion-item>
-            <!-- <ion-item *ngIf="userMe" menuClose (click)="wallet()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">account_balance_wallet</ion-icon>
-                </ion-avatar>
-                <h2>{{'wallet' | translate}}</h2>
-            </ion-item> -->
-            <!-- <ion-item menuClose (click)="promo_code()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">local_offer</ion-icon>
-                </ion-avatar>
-                <h2>{{'promo_code' | translate}}</h2>
-            </ion-item> -->
             <ion-item *ngIf="userMe" menuClose (click)="help()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">help</ion-icon>
+                    <ion-icon name="help-circle"></ion-icon>
                 </ion-avatar>
                 <h2>{{'faqs' | translate}}</h2>
             </ion-item>
             <ion-item *ngIf="userMe" menuClose (click)="contact_us()">
                 <ion-avatar item-start>
-                    <ion-icon class="material-icons">mail</ion-icon>
+                    <ion-icon name="mail"></ion-icon>
                 </ion-avatar>
                 <h2>{{'contact_us' | translate}}</h2>
             </ion-item>
@@ -96,21 +79,7 @@
                 </ion-avatar>
                 <h2>{{'change_language' | translate}}</h2>
             </ion-item>
-
-            <!-- <ion-item menuClose (click)="managelanguage()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">public</ion-icon>
-                </ion-avatar>
-                <h2>{{'change_language' | translate}}</h2>
-            </ion-item>
-            <ion-item menuClose (click)="alertLogout()">
-                <ion-avatar item-start>
-                    <ion-icon name="log-out"></ion-icon>
-                </ion-avatar>
-                <h2>{{'logout_title' | translate}}</h2>
-            </ion-item> -->
-
-            <ion-item *ngIf="config.enableBranding" menuClose (click)="developedBy()" no-lines>
+            <ion-item *ngIf="config.enableBranding" menuClose (click)="developedBy()" lines="none">
                 <div class="div-logo">
                     <h4 class="text-white-dev">{{'developed_by' | translate}}</h4>
                     <img class="img-logo" src="assets/imgs/logo_vt_white.png" alt="">
@@ -123,14 +92,15 @@
 <ion-menu *ngIf="rtlSide == 'right'" side="end" contentId="content" (ionOpen)="menuOpened()">
     <ion-header>
         <ion-toolbar>
-            <button ion-button menuToggle>
-                <ion-icon class="material-icons">clear</ion-icon>
-            </button>
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+                <!-- <ion-icon class="material-icons">clear</ion-icon> -->
+            </ion-button>
             <ion-title></ion-title>
         </ion-toolbar>
         <div class="profile_box d-flex">
             <div class="profile_img center_img">
-                <img *ngIf="!userMe || !userMe.image_url || !userMe.image_url.length" src="assets/imgs/logo.png"
+                <img *ngIf="!userMe || !userMe.image_url || !userMe.image_url.length" src="../assets/imgs/logo.png"
                     class="crop_img">
                 <img *ngIf="userMe && userMe.image_url && userMe.image_url.length" data-src="{{userMe.image_url}}"
                     class="crop_img">
@@ -149,19 +119,13 @@
     </ion-header>
 
     <ion-content class="bg-color" fullscreen="true">
-        <ion-list no-lines>
+        <ion-list lines="none">
             <ion-item *ngIf="userMe" menuClose (click)="home()">
                 <ion-avatar item-start>
                     <ion-icon class="material-icons">home</ion-icon>
                 </ion-avatar>
                 <h2>{{'home' | translate}}</h2>
             </ion-item>
-            <!-- <ion-item menuClose (click)="my_profile()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">account_box</ion-icon>
-                </ion-avatar>
-                <h2>{{'my_profile' | translate}}</h2>
-            </ion-item> -->
             <ion-item *ngIf="userMe" menuClose (click)="my_card()">
                 <ion-avatar item-start>
                     <ion-icon class="material-icons">payment</ion-icon>
@@ -186,18 +150,6 @@
                 </ion-avatar>
                 <h2>{{'vouchers' | translate}}</h2>
             </ion-item>
-            <!-- <ion-item *ngIf="userMe" menuClose (click)="wallet()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">account_balance_wallet</ion-icon>
-                </ion-avatar>
-                <h2>{{'wallet' | translate}}</h2>
-            </ion-item> -->
-            <!-- <ion-item menuClose (click)="promo_code()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">local_offer</ion-icon>
-                </ion-avatar>
-                <h2>{{'promo_code' | translate}}</h2>
-            </ion-item> -->
             <ion-item *ngIf="userMe" menuClose (click)="help()">
                 <ion-avatar item-start>
                     <ion-icon class="material-icons">help</ion-icon>
@@ -218,20 +170,7 @@
                 <h2>{{'change_language' | translate}}</h2>
             </ion-item>
 
-            <!-- <ion-item menuClose (click)="managelanguage()">
-                <ion-avatar item-start>
-                    <ion-icon class="material-icons">public</ion-icon>
-                </ion-avatar>
-                <h2>{{'change_language' | translate}}</h2>
-            </ion-item>
-            <ion-item menuClose (click)="alertLogout()">
-                <ion-avatar item-start>
-                    <ion-icon name="log-out"></ion-icon>
-                </ion-avatar>
-                <h2>{{'logout_title' | translate}}</h2>
-            </ion-item> -->
-
-            <ion-item *ngIf="config.enableBranding" menuClose (click)="developedBy()" no-lines>
+            <ion-item *ngIf="config.enableBranding" menuClose (click)="developedBy()" lines="none">
                 <div class="div-logo">
                     <h4 class="text-white-dev">{{'developed_by' | translate}}</h4>
                     <img class="img-logo" src="assets/imgs/logo_vt_white.png" alt="">

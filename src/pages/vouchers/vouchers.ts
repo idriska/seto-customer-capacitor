@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ClientService } from '../../services/client.service';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { Offer } from '../../models/offer.models';
-import { Clipboard } from '@ionic-native/clipboard';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { RouterWrapperService } from 'src/services/router-wrapper.service';
 
 @Component({

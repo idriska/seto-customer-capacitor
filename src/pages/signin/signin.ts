@@ -15,7 +15,7 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 export class SigninPage {
   private countries: any;
   private phoneNumber: string;
-  private countryCode: string = "43";
+  private countryCode: string = "90";
   private phoneNumberFull: string;
 
   constructor(private navCtrl: RouterWrapperService, private cue: CommonUiElement,

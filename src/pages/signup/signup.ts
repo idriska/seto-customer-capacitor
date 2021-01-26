@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { ClientService } from '../../services/client.service';
 import { FirebaseClient } from '../../services/firebase.service';
@@ -26,13 +26,13 @@ export class SignupPage {
   private progress: boolean = false;
   private fileToUpload: File;
 
-  constructor(params: NavParams, private clientService: ClientService, private cue: CommonUiElement, private firebaseService: FirebaseClient,
+  constructor( private clientService: ClientService, private cue: CommonUiElement, private firebaseService: FirebaseClient,
     private translate: TranslateService, private alertCtrl: AlertController, private navCtrl: RouterWrapperService,
     private imagePicker: ImagePicker, private cropService: Crop, private file: File) {
-    let code = params.get('code');
-    let phone = params.get('phone');
-    let name = params.get('name');
-    let email = params.get('email');
+    let code = this.navCtrl.getData('code');
+    let phone = this.navCtrl.getData('phone');
+    let name = this.navCtrl.getData('name');
+    let email = this.navCtrl.getData('email');
     if (code && code.length) {
       this.countryCode = code;
     }

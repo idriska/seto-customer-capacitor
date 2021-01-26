@@ -14,7 +14,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-contact_us',
   templateUrl: 'contact_us.html',
-  providers: [CommonUiElement, ClientService]
+  providers: [CommonUiElement, ClientService],
+  styleUrls: ['contact_us.scss']
 })
 export class Contact_usPage {
   private userMe: User;

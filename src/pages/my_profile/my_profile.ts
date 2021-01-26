@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, Platform, AlertController } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { User } from '../../models/user.models';
 import { Constants } from '../../models/constants.models';
 import { CommonUiElement } from '../../services/app.commonelements';
@@ -24,10 +24,10 @@ export class My_profilePage {
   private progress: boolean = false;
   private fileToUpload: File;
 
-  constructor(private navCtrl: RouterWrapperService, navParam: NavParams, private imagePicker: ImagePicker,
+  constructor(private navCtrl: RouterWrapperService, private imagePicker: ImagePicker,
     private file: File, private service: ClientService, private translate: TranslateService, private events: Events, private alertCtrl: AlertController,
     private _firebase: FirebaseClient, private cue: CommonUiElement, private cropService: Crop, private platform: Platform) {
-    let savedUserIn = navParam.get("savedUser");
+    let savedUserIn = this.navCtrl.getData("savedUser");
     if (savedUserIn) {
       this.savedUser = savedUserIn;
     } else {

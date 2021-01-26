@@ -1,23 +1,25 @@
 <ion-header class="theme_header">
     <ion-toolbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
+        <ion-button>
+            <ion-menu-button></ion-menu-button>
+        </ion-button>
         <ion-title>
             <h2>{{'contact_us' | translate}}</h2>
             <p>{{'let_us_know_your_issue_feedbacks' | translate}}</p>
         </ion-title>
     </ion-toolbar>
     <ion-row>
-        <ion-col col-6 no-padding>
-            <button ion-button full no-margin text-uppercase clear class="btn" (click)="callSupport()">
-                <ion-icon class="material-icons">phone</ion-icon>{{'call_us' | translate}}
-            </button>
+        <ion-col size="6" class="ion-no-padding">
+            <ion-button expand="full" fill="clear" class="btn ion-no-margin" (click)="callSupport()">
+                <ion-icon name="call"></ion-icon>
+                {{'call_us' | translate}}
+            </ion-button>
         </ion-col>
-        <ion-col col-6 no-padding>
-            <button ion-button full no-margin text-uppercase item-start class="btn" (click)="mailSupport()">
-                <ion-icon class="material-icons">mail</ion-icon> {{'mail_us' | translate}}
-            </button>
+        <ion-col size="6" class="ion-no-padding">
+            <ion-button expand="full" item-start class="btn ion-no-margin" (click)="mailSupport()">
+                <ion-icon name="mail"></ion-icon>
+                {{'mail_us' | translate}}
+            </ion-button>
         </ion-col>
     </ion-row>
 </ion-header>
@@ -25,21 +27,21 @@
     <div class="form">
         <h2>{{'write_us' | translate}}</h2>
         <p>{{'describe_us_issue' | translate}}</p>
-        <ion-list no-lines>
+        <ion-list lines="none">
             <ion-item>
-                <ion-label floating>{{'your_email_address' | translate}}</ion-label>
+                <ion-label position="floating">{{'your_email_address' | translate}}</ion-label>
                 <ion-input readonly type="email" [(ngModel)]="support.email"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label>{{'describe_us_issue_or_feedback' | translate}}</ion-label>
+                <ion-label position="stacked">{{'describe_us_issue_or_feedback' | translate}}</ion-label>
                 <ion-textarea type="text" [(ngModel)]="support.message"
                     placeholder="{{'write_your_message' | translate}}"></ion-textarea>
             </ion-item>
         </ion-list>
     </div>
 </ion-content>
-<ion-footer no-border>
-    <button ion-button full no-margin text-uppercase item-start class="btn" (click)="send()">
+<ion-footer class="ion-no-border">
+    <ion-button expand="full" item-start class="btn ion-no-margin" (click)="send()">
         {{'submit' | translate}}
-    </button>
+    </ion-button>
 </ion-footer>

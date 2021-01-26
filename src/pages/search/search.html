@@ -1,35 +1,12 @@
 <ion-header class="header_gradient">
     <ion-toolbar>
-        <button ion-button menuToggle *ngIf="phase == 1">
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <!-- <div class="back_btn" *ngIf="phase != 1" (click)="clearToPhase(1)">
-            <ion-icon md="md-arrow-back" ios="ios-arrow-back"></ion-icon>
-        </div> -->
+        <ion-button *ngIf="phase == 1">
+            <ion-menu-button></ion-menu-button>
+          </ion-button>
         <div class="back_btn" *ngIf="phase == 2" (click)="clearToPhase(1)">
             <ion-icon md="md-arrow-back" ios="ios-arrow-back"></ion-icon>
         </div>
-        <!-- <ion-title *ngIf="phase == 1" text-uppercase>{{'book_your_ride' | translate}}</ion-title> -->
-        <!-- <ion-title *ngIf="phase == 2 && ride" text-uppercase>{{'finding_your_ride' | translate}}</ion-title> -->
     </ion-toolbar>
-    <!-- <ion-list class="animated zoomIn delay_3" *ngIf="phase == 1" no-lines>
-        <ion-item>
-            <div class="d-flex item_box">
-                <ion-icon class="material-icons" (click)="detect()">location_on</ion-icon>
-                <ion-searchbar [(ngModel)]="querySource" (ionInput)="searchPlaceSource()"
-                    placeholder="{{'enter_source' | translate}}"></ion-searchbar>
-                <ion-icon class="material-icons end" (click)="navSavedAddress(1)">attachment</ion-icon>
-            </div>
-        </ion-item>
-        <ion-item>
-            <div class="d-flex item_box">
-                <ion-icon class="material-icons">near_me</ion-icon>
-                <ion-searchbar [(ngModel)]="queryDestination" (ionInput)="searchPlaceDestination()"
-                    placeholder="{{'enter_destination' | translate}}"></ion-searchbar>
-                <ion-icon class="material-icons end" (click)="navSavedAddress(2)">attachment</ion-icon>
-            </div>
-        </ion-item>
-    </ion-list> -->
 </ion-header>
 
 <ion-content class="bg-color" fullscreen>
@@ -41,26 +18,12 @@
     </div>
 
     <div *ngIf="phase == 1">
-        <!-- <ion-list no-lines *ngIf="places && places.length" class="search_list">
-            <ion-item class="animated slideInRight" *ngFor="let place of places">
-                <div class="d-flex item_box" (click)="selectPlace(place)">
-                    <ion-icon class="material-icons">room</ion-icon>
-                    <h2>{{place.description}}</h2>
-                </div>
-            </ion-item>
-        </ion-list> -->
-
         <div class="payment_option" [ngClass]="fabAction ? 'active' : ''">
             <h2 class="d-flex" [ngClass]="payment_method == 'cash' ? 'selected' : '' "
                 (click)="setPaymentMethod('cash')">
                 <ion-icon class="zmdi zmdi-money-box"></ion-icon>
                 {{'cash' | translate}}
             </h2>
-            <!-- <h2 class="d-flex " [ngClass]="payment_method == 'wallet' ? 'selected' : '' "
-                (click)="setPaymentMethod('wallet')">
-                <ion-icon class="zmdi zmdi-balance-wallet"></ion-icon>
-                {{'wallet' | translate}}
-            </h2> -->
             <h2 class="d-flex " [ngClass]="payment_method == 'card_business' ? 'selected' : '' "
                 (click)="setPaymentMethod('card_business')">
                 <ion-icon class="zmdi zmdi-card"></ion-icon>
@@ -81,7 +44,6 @@
                 <div class="animation_box b"></div>
                 <div class="animation_box c"></div>
                 <div class="animation_box d"></div>
-                <!-- <ion-icon class="material-icons">fiber_manual_record</ion-icon> -->
             </div>
 
             <ion-fab center bottom (click)="cancelSearch()">
@@ -93,17 +55,18 @@
     </div>
 
 </ion-content>
-<ion-footer no-border>
+<ion-footer class="ion-no-border">
     <div *ngIf="!ride && phase != 3">        
         
-        <ion-list class="animated zoomIn delay_3 phase_one_search" *ngIf="phase == 1 && !fabAction" style="padding-bottom: 20px" no-lines>
-            <ion-item style="padding: 20px">
+        <ion-list class="animated zoomIn delay_3 phase_one_search" *ngIf="phase == 1 && !fabAction" style="padding-bottom: 20px" lines="none">
+            <div style="padding: 20px">
                 <p style="font-size: 12px; padding-bottom: 5px;">{{'welcome_back' | translate}}</p>
                 <h2 style="font-weight: bold;">{{'where_to_go' | translate}}</h2>
-            </ion-item>
+            </div>
             <ion-item>
                 <div class="d-flex item_box">
-                    <ion-icon class="material-icons" (click)="detect()">location_on</ion-icon>
+                    <ion-icon name="location-sharp" (click)="detect()"></ion-icon>
+                    <!-- <ion-icon class="material-icons" (click)="detect()">location_on</ion-icon> -->
                     <ion-searchbar [(ngModel)]="querySource" (ionInput)="searchPlaceSource()"
                         placeholder="{{'enter_source' | translate}}"></ion-searchbar>
                     <ion-icon class="material-icons end" (click)="navSavedAddress(1)">attachment</ion-icon>
@@ -111,14 +74,15 @@
             </ion-item>
             <ion-item>
                 <div class="d-flex item_box">
-                    <ion-icon class="material-icons">near_me</ion-icon>
+                    <ion-icon name="navigate"></ion-icon>
+                    <!-- <ion-icon class="material-icons">near_me</ion-icon> -->
                     <ion-searchbar [(ngModel)]="queryDestination" (ionInput)="searchPlaceDestination()"
                         placeholder="{{'enter_destination' | translate}}"></ion-searchbar>
                     <ion-icon class="material-icons end" (click)="navSavedAddress(2)">attachment</ion-icon>
                 </div>
             </ion-item>
         </ion-list>
-        <ion-list no-lines *ngIf="places && places.length && !fabAction" class="search_list">
+        <ion-list lines="none" *ngIf="places && places.length && !fabAction" class="search_list">
             <ion-item class="animated slideInRight" *ngFor="let place of places">
                 <div class="d-flex item_box" (click)="selectPlace(place)">
                     <ion-icon class="material-icons">room</ion-icon>
@@ -126,13 +90,6 @@
                 </div>
             </ion-item>
         </ion-list>
-
-
-
-
-
-
-
         <div *ngIf="phase == 1" class="phase_one">
             <div class="btn_box d-flex" (click)="togglePaymentFab()">
                 <p>{{'select_payment_mode' | translate}}</p>
@@ -149,13 +106,13 @@
                     {{ ((payment_method == 'card_business') ? 'business_card' : 'personal_card') | translate}}
                 </h2>
             </div>
-            <button ion-button full no-margin text-uppercase clear (click)="next()" class="btn">
+            <ion-button expand="full" fill="clear" (click)="next()" class="btn ion-no-margin">
                 {{'continue' | translate}}
-            </button>
+            </ion-button>
         </div>
 
         <div *ngIf="phase == 2" class="phase_two animated slideInUp delay_3">
-            <ion-list no-lines radio-group [(ngModel)]="vehicleTypeId" required>
+            <ion-list lines="none" radio-group [(ngModel)]="vehicleTypeId" required>
                 <ion-scroll scrollX="true">
                     <ion-item *ngFor="let vt of vehicleTypes">
                         <ion-label>
@@ -173,7 +130,7 @@
 
 
             <div class="form promocode">
-                <ion-list no-lines>
+                <ion-list lines="none">
                     <ion-item>
                         <ion-input type="text" [(ngModel)]="couponCode" placeholder="{{'have_promocode' | translate}}">
                         </ion-input>
@@ -181,15 +138,15 @@
                     </ion-item>
                 </ion-list>
             </div>
-            <button ion-button full no-margin text-uppercase clear (click)="next()" class="btn">
+            <ion-button expand="full" fill="clear" (click)="next()" class="btn ion-no-margin">
                 {{'continue' | translate}}
-            </button>
+            </ion-button>
         </div>
     </div>
 
     <div *ngIf="phase == 3"
         [ngClass]="fabFooterAction ? 'phase_three active animated slideInUp delay_3' : 'phase_three'">
-        <ion-list no-lines style="margin-bottom: 15px;">
+        <ion-list lines="none" style="margin-bottom: 15px;">
             <ion-item class="d-flex" (click)="toggleFab()">
                 <div class="img_box center_img" item-start>
                     <img *ngIf="!ride.driver.user.image_url || !ride.driver.user.image_url.length"
@@ -295,8 +252,8 @@
     </div>
 </ion-footer>
 <div *ngIf="config.enableBuyThisApp && phase == 1" class="buy-this-app-class">
-    <button ion-button class="button-size" (click)="buyThisApp()" round>
+    <ion-button class="button-size" (click)="buyThisApp()" round>
         <ion-icon name="md-cart" class="text-white"></ion-icon> &nbsp;
         {{'buy_this_app' | translate}}
-    </button>
+    </ion-button>
 </div>

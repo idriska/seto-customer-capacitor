@@ -1,4 +1,4 @@
-page-verification {
+:host {
     .form {
         margin-top: 20px;
 
@@ -11,5 +11,8 @@ page-verification {
         .item .item-inner ion-input .text-input {
             letter-spacing: 7px;
         }
+    }
+    .btn{
+        text-transform: uppercase;
     }
 }

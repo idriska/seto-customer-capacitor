@@ -26,8 +26,8 @@ export interface AppConfig {
 
 export const BaseAppConfig: AppConfig = {
 	appName: "Seto",
-	apiBase: "https://admin.seto.app/",
-	// apiBase: "http://192.168.1.26:8000/",
+	// apiBase: "https://admin.seto.app/",
+	apiBase: "http://192.168.1.26:8000/",
 	
 	googleApiKey: "AIzaSyDWqolrYHxhQ5iDLpwPHkKeChgF6sJssnw",
 	oneSignalAppId: "2d98f8cc-3223-44a9-86f9-e217590e4136",

@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavParams } from '@ionic/angular';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { Ride } from '../../models/ride.models';
 import { GoogleMaps } from '../../services/google-maps';
@@ -22,10 +21,10 @@ export class Trip_infoPage {
   private distanceUnit: string;
   private currency: string;
 
-  constructor(private maps: GoogleMaps, private navCtrl: RouterWrapperService, navParams: NavParams) {
+  constructor(private maps: GoogleMaps, private navCtrl: RouterWrapperService) {
     this.currency = Helper.getSetting("currency");
     this.currency === 'EUR' ? this.currency = '€' : undefined
-    this.ride = navParams.get("ride");
+    this.ride = this.navCtrl.getData("ride");
     this.distanceUnit = Helper.getSetting("unit");
     if (this.distanceUnit && this.distanceUnit.length) this.distanceUnit = this.distanceUnit.toLowerCase();
   }

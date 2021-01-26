@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { MyCardRequest } from '../../models/mycard-request.models';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { ClientService } from '../../services/client.service';
@@ -19,8 +19,8 @@ export class Add_cardPage {
   card: MyCard = null;
 
   constructor(public navCtrl: RouterWrapperService, private global: CommonUiElement, private alertCtrl: AlertController,
-    private service: ClientService, private translate: TranslateService, navParams: NavParams) {
-    this.card = navParams.get("card");
+    private service: ClientService, private translate: TranslateService) {
+    this.card = this.navCtrl.getData("card")
     if (this.card != null) {
       this.cardRequest.cvc = "***";
       this.cardRequest.email = this.card.metadata.email;

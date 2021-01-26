@@ -1,18 +1,18 @@
-page-contact_us {
-  .header.theme_header {
-    .toolbar .title .toolbar-title p {
+:host {
+  ion-header {
+    ion-toolbar ion-title p {
       margin-top: 0;
       margin-bottom: 30px;
     }
 
-    .row {
+    ion-row {
       margin: 0 -10px;
       position: relative;
       z-index: 99;
-      background: darken($item-bg, 10%);
+      // background: darken($item-bg, 10%);
 
-      .col {
-        .button.btn {
+      ion-col {
+        .btn {
           height: 55px;
 
           ion-icon {
@@ -26,8 +26,12 @@ page-contact_us {
     }
   }
 
-  .scroll-content {
-    background: $item-bg;
+  .btn{
+    text-transform: uppercase;
+  }
+
+  ion-content {
+    background: var(--item-bg);
   }
 
   .form {
@@ -39,21 +43,21 @@ page-contact_us {
       font-size: 3.4rem;
       font-weight: 500;
       letter-spacing: 0.5px;
-      color: $white;
+      color: var(--white);
     }
 
     p {
       font-size: 1.3rem;
-      color: $info;
+      color: var(--info);
       margin: 0;
       letter-spacing: 0;
     }
 
-    .list {
+    ion-list {
       margin-top: 25px;
     }
 
-    .item {
+    ion-item {
       margin-bottom: 16px;
 
       .item-inner .label {
@@ -85,28 +89,28 @@ page-contact_us {
               font-weight: 500;
               width: 100%;
               margin: 0;
-              //color: $gray;
+              color: var(--gray);
               height: 90px;
             }
 
             ::-webkit-input-placeholder {
               font-size: 2.1rem;
-              color: $gray;
+              color: var(--gray);
             }
 
             ::-moz-placeholder {
               font-size: 2.1rem;
-              color: $gray;
+              color: var(--gray);
             }
 
             :-ms-input-placeholder {
               font-size: 2.1rem;
-              color: $gray;
+              color: var(--gray);
             }
 
             :-moz-placeholder {
               font-size: 2.1rem;
-              color: $gray;
+              color: var(--gray);
             }
           }
         }
@@ -114,8 +118,8 @@ page-contact_us {
     }
   }
 
-  .footer {
-    .button.btn {
+  ion-footer {
+    .btn {
       height: 55px;
     }
   }

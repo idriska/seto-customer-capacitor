@@ -9,16 +9,16 @@
 
 <ion-content class="bg-color">
     <div class="form">
-        <ion-list no-lines>
+        <ion-list lines="none">
             <ion-item>
-                <ion-label floating>{{'select_country' | translate}}</ion-label>
+                <ion-label position="stacked">{{'select_country' | translate}}</ion-label>
                 <ion-select [(ngModel)]="countryCode" multiple="false" class="text-thime" disabled="false">
                     <ion-select-option [value]="country.callingCodes[0]" *ngFor="let country of countries">{{country.name}}
                     </ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-                <ion-label stacked>{{'enter_phone_number' | translate}}</ion-label>
+                <ion-label position="stacked">{{'enter_phone_number' | translate}}</ion-label>
                 <ion-input placeholder="660123456" [(ngModel)]="phoneNumber" type="tel" ></ion-input>
             </ion-item>
         </ion-list>
@@ -29,7 +29,7 @@
                 {{'new_user' | translate}}
             </button>
         </ion-col> -->
-        <ion-col no-padding>
+        <ion-col class="ion-no-padding">
             <ion-button expand="full" class="btn ion-no-margin" (click)="alertPhone()">
                 {{'sign_in' | translate}}
             </ion-button>

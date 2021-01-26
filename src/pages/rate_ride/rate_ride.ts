@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavParams } from '@ionic/angular';
 import { Ride } from '../../models/ride.models';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { ClientService } from '../../services/client.service';
@@ -24,9 +23,11 @@ export class Rate_ridePage {
   private rideTime: string;
   reviewText = "";
 
-  constructor(navParams: NavParams, private navCtrl: RouterWrapperService,
+  constructor(private navCtrl: RouterWrapperService,
     private service: ClientService, private cue: CommonUiElement, private translate: TranslateService) {
-    this.ride = navParams.get("ride");
+    this.ride = this.navCtrl.getData("ride");
+
+    
     if (!this.ride.driver.user.ratings) this.ride.driver.user.ratings = 0;
     this.ride.driver.user.ratings = Number(Number(this.ride.driver.user.ratings).toFixed(1));
     this.rateRequest.rating = 3;

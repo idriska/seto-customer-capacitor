@@ -20,7 +20,7 @@ import { Events } from 'src/services/event-handler.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  // styleUrls: ['app.component.scss']
 })
 export class AppComponent {
   userMe: User;
@@ -212,37 +212,48 @@ export class AppComponent {
 
   home() {
       this.navCtrl.push("search");
+      this.menu.close();
   }
   my_profile() {
       this.navCtrl.push("profile");
+      this.menu.close();
   }
   my_trips() {
     this.navCtrl.push("trips");
+    this.menu.close();
   }
   wallet() {
     this.navCtrl.push("wallet");
+    this.menu.close();
   }
   promo_code() {
    this.navCtrl.push("promocode");
+   this.menu.close();
   }
   help() {
     this.navCtrl.push("help");
+    this.menu.close();
   }
   contact_us() {
      this.navCtrl.push("contact");
+     this.menu.close();
   }
 
   managelanguage() {
     this.navCtrl.push("language");
+    this.menu.close();
   }
   saved_address() {
      this.navCtrl.push("address");
+     this.menu.close();
   }
   my_card() {
     this.navCtrl.push("cards");
+    this.menu.close();
   }
   vouchers() {
     this.navCtrl.push("voucher");
+    this.menu.close();
   }
 
   alertLogout() {

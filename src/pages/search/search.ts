@@ -30,12 +30,15 @@ import { RouterWrapperService } from "src/services/router-wrapper.service";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 declare var google;
 
+
 @Component({
   selector: "page-search",
   templateUrl: "search.html",
   providers: [CommonUiElement, ClientService],
+  styleUrls: ['search.scss'],
 })
 export class SearchPage {
+
   private phase = 1;
   @ViewChild("map") private mapElement: ElementRef;
   @ViewChild("pleaseConnect") private pleaseConnect: ElementRef;
@@ -218,6 +221,7 @@ export class SearchPage {
   }
 
   ionViewWillLeave() {
+    console.log("IonViewWillLeave")
     this.subscriptions.forEach((subscription: Subscription) =>
       subscription.unsubscribe()
     );
@@ -247,7 +251,8 @@ export class SearchPage {
     if (this.rideLocationRef) this.rideLocationRef.off("value");
   }
 
-  ionViewDidLoad(): void {
+  ionViewDidEnter(): void {
+    console.log("IonViewDidEnter")
     if (!this.initialized) {
       let mapLoaded = this.maps
         .init(
@@ -259,7 +264,7 @@ export class SearchPage {
           this.autocompleteService = new google.maps.places.AutocompleteService();
           this.placesService = new google.maps.places.PlacesService(
             this.maps.map
-          );
+            );
           this.searchDisabled = false;
           // this.maps.map.addListener('click', (event) => {
           //   if (event && event.latLng) {
@@ -287,7 +292,8 @@ export class SearchPage {
     }
   }
 
-  ionViewDidEnter() {
+  ionViewDidLeave() {
+    console.log("IonViewDidLeave")
     let locationTemp = JSON.parse(
       window.localStorage.getItem(Constants.KEY_LOCATION_TEMP)
     );
@@ -497,27 +503,28 @@ export class SearchPage {
   }
 
   searchPlace(query: string) {
+    console.log(this.autocompleteService)
     //this.saveDisabled = true;
-    if (query.length > 0 && !this.searchDisabled) {
-      let config = {
-        input: query,
-        componentRestrictions: { country: "AT" },
-      };
-      this.autocompleteService.getPlacePredictions(
-        config,
-        (predictions, status) => {
-          if (
-            status == google.maps.places.PlacesServiceStatus.OK &&
-            predictions
-          ) {
-            this.places = [];
-            predictions.forEach((prediction) => this.places.push(prediction));
-          }
-        }
-      );
-    } else {
-      this.places = [];
-    }
+    // if (query.length > 0 && !this.searchDisabled) {
+    //   let config = {
+    //     input: query,
+    //     componentRestrictions: { country: "AT" },
+    //   };
+    //   this.autocompleteService.getPlacePredictions(
+    //     config,
+    //     (predictions, status) => {
+    //       if (
+    //         status == google.maps.places.PlacesServiceStatus.OK &&
+    //         predictions
+    //       ) {
+    //         this.places = [];
+    //         predictions.forEach((prediction) => this.places.push(prediction));
+    //       }
+    //     }
+    //   );
+    // } else {
+    //   this.places = [];
+    // }
   }
 
   selectPlace(place) {

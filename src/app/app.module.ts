@@ -26,9 +26,9 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 import { Network } from "@ionic-native/network/ngx";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
-import { File } from "@ionic-native/file";
-import { ImagePicker } from "@ionic-native/image-picker";
-import { Crop } from "@ionic-native/crop";
+import { File } from "@ionic-native/file/ngx";
+import { ImagePicker } from "@ionic-native/image-picker/ngx";
+import { Crop } from "@ionic-native/crop/ngx";
 import { GoogleMaps } from "../services/google-maps";
 import { Connectivity } from "../services/connectivity-service";
 import { CallNumber } from "@ionic-native/call-number/ngx";
@@ -52,6 +52,8 @@ import { RouterWrapperService } from "src/services/router-wrapper.service";
 import { Events } from "src/services/event-handler.service";
 import { ClientService } from 'src/services/client.service';
 import { CommonUiElement } from 'src/services/app.commonelements';
+import { FormsModule } from '@angular/forms'
+
 registerLocaleData(localeDe);
 
 export function createTranslateLoader(http: HttpClient) {
@@ -85,6 +87,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
@@ -113,13 +116,12 @@ export function createTranslateLoader(http: HttpClient) {
     GoogleMaps,
     Connectivity,
     CallNumber,
-    //Clipboard,
+    Clipboard,
     SocialSharing,
     InAppBrowser,
     ClientService,
     { provide: APP_CONFIG, useValue: BaseAppConfig },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    // { provide: ErrorHandler, useClass: IonicErrorHandler },
     {
       provide: LOCALE_ID,
       deps: [LanguageProvider],

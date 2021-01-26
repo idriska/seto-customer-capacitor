@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavParams } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ClientService } from '../../services/client.service';
 import { CommonUiElement } from '../../services/app.commonelements';
@@ -21,8 +20,9 @@ export class Saved_addressPage {
   pick = false;
 
   constructor(private navCtrl: RouterWrapperService, private translate: TranslateService,
-    private clientService: ClientService, private cue: CommonUiElement, navParams: NavParams) {
-    this.pick = navParams.get("pick");
+    private clientService: ClientService, private cue: CommonUiElement) {
+    this.pick = this.navCtrl.getData("pick");
+
     this.translate.get("loading").subscribe(value => {
       this.cue.presentLoading(value);
       this.loadAddresses();

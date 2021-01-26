@@ -1,7 +1,7 @@
 <ion-header class="theme_header">
 	<ion-toolbar>
-		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
+		<button ion-button>
+			<ion-menu-button></ion-menu-button>
 		</button>
 		<ion-title>
 			<h2>{{'enter_promo_code' | translate}}</h2>
@@ -37,7 +37,7 @@
 	</div>
 </ion-content>
 <ion-footer no-border class="bg-color">
-	<button ion-button full clear no-margin text-uppercase class="btn" (click)="share()">
+	<button ion-button full expand="full" no-margin text-uppercase class="btn" (click)="share()">
 		{{'share_code' | translate}}
 	</button>
 </ion-footer>

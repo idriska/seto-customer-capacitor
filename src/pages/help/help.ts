@@ -10,7 +10,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-help',
   templateUrl: 'help.html',
-  providers: [CommonUiElement, ClientService]
+  providers: [CommonUiElement, ClientService],
+  styleUrls: ['help.scss']
 })
 export class HelpPage {
   private faqs = new Array<Faq>();

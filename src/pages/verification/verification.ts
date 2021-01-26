@@ -4,17 +4,18 @@ import { CommonUiElement } from '../../services/app.commonelements';
 import { Constants } from '../../models/constants.models';
 import { ClientService } from '../../services/client.service';
 import { APP_CONFIG, AppConfig } from '../../app/app.config';
-import { NavParams, Platform } from '@ionic/angular';
-import { SearchPage } from '../search/search';
+import { Platform } from '@ionic/angular';
 import firebase from 'firebase';
 import { Events } from 'src/services/event-handler.service';
 import { RouterWrapperService } from 'src/services/router-wrapper.service';
- 
+
 
 @Component({
   selector: 'page-verification',
   templateUrl: 'verification.html',
-  providers: [ClientService, CommonUiElement]
+  providers: [ClientService, CommonUiElement],
+  styleUrls: ['verification.scss'],
+
 })
 export class VerificationPage {
   private recaptchaVerifier: firebase.auth.RecaptchaVerifier;
@@ -37,11 +38,12 @@ export class VerificationPage {
   private resendCode: boolean = false;
   private otpNotSent: boolean = true;
 
-  constructor(@Inject(APP_CONFIG) config: AppConfig, params: NavParams,
+  constructor(@Inject(APP_CONFIG) config: AppConfig,
     private cue: CommonUiElement, private events: Events, private translate: TranslateService, private navCtrl: RouterWrapperService,
     private clientService: ClientService, private platform: Platform) {
-    this.phoneNumberFull = params.get('phoneNumberFull');
-  }
+    
+      this.phoneNumberFull = this.navCtrl.getData("phoneNumberFull")
+    }
 
   ionViewDidEnter() {
     if (!(this.platform.is('cordova'))) {
