@@ -1,9 +1,9 @@
-page-saved_address {
-    .list {
+:host {
+    ion-list {
         margin: 0;
         padding-top: 25px;
 
-        .item {
+        ion-item {
             background: #fff;
             margin: 0 auto;
             width: calc(100% - 45px);
@@ -23,35 +23,54 @@ page-saved_address {
                 }
 
                 ion-icon {
-                    color: $theme-color;
+                    color: var(--theme-color);
                     font-size: 2.2rem;
                 }
             }
 
-            .item-inner {
-                padding: 0;
+            --inner-padding-end: 0px;
+            --padding-start:0px;
 
-                .label {
-                    margin: 0;
-                    white-space: normal;
-
-                    h2 {
-                        margin: 0;
-                        font-weight: 600;
-                        text-transform: uppercase;
-                        font-size: 1.4rem;
-                        letter-spacing: 1px;
-                        padding-bottom: 7px;
-                    }
-
-                    p {
-                        margin: 0;
-                        color: $gray;
-                        font-size: 1.35rem;
-                        letter-spacing: 0.3px;
-                    }
-                }
+            h2 {
+                margin: 0;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+                padding-bottom: 7px;
             }
+
+            p {
+                margin: 0;
+                color: var(--gray);
+                font-size: 1.35rem;
+                letter-spacing: 0.3px;
+            }
+
+            // .item-inner {
+            //     padding: 0;
+
+            //     .label {
+            //         margin: 0;
+            //         white-space: normal;
+
+            //         h2 {
+            //             margin: 0;
+            //             font-weight: 600;
+            //             text-transform: uppercase;
+            //             font-size: 1.4rem;
+            //             letter-spacing: 1px;
+            //             padding-bottom: 7px;
+            //         }
+
+            //         p {
+            //             margin: 0;
+            //             color: var(--gray);
+            //             font-size: 1.35rem;
+            //             letter-spacing: 0.3px;
+            //         }
+            //     }
+            // }
         }
     }
 
@@ -85,14 +104,15 @@ page-saved_address {
         }
     }
 
-    .footer {
-        .button.btn {
+    ion-footer {
+        .btn {
+            text-transform: uppercase;
             ion-icon {
                 position: relative;
                 top: 1px;
                 font-size: 2.2rem;
                 min-width: 27px;
-            }
+                }
         }
     }
 }

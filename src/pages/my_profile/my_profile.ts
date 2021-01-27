@@ -17,7 +17,8 @@ import { Events } from 'src/services/event-handler.service';
 @Component({
   selector: 'page-my_profile',
   templateUrl: 'my_profile.html',
-  providers: [CommonUiElement, ClientService, FirebaseClient]
+  providers: [CommonUiElement, ClientService, FirebaseClient],
+  styleUrls: ['my_profile.scss'],
 })
 export class My_profilePage {
   private savedUser = new User();

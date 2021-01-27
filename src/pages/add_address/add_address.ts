@@ -12,12 +12,11 @@ import { CommonUiElement } from "../../services/app.commonelements";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { RouterWrapperService } from "src/services/router-wrapper.service";
 
-declare const google: any;
-
 @Component({
   selector: "page-add_address",
   templateUrl: "add_address.html",
   providers: [CommonUiElement, ClientService],
+  styleUrls: ['add_address.scss'],
 })
 export class Add_addressPage {
   @ViewChild("map") private mapElement: ElementRef;
@@ -69,7 +68,7 @@ export class Add_addressPage {
     this.global.dismissLoading();
   }
 
-  ionViewDidLoad(): void {
+  ionViewDidEnter(): void {
     if (!this.initialized) {
       let mapLoaded = this.maps
         .init(

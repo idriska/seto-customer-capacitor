@@ -21,17 +21,20 @@
         <div class="payment_option" [ngClass]="fabAction ? 'active' : ''">
             <h2 class="d-flex" [ngClass]="payment_method == 'cash' ? 'selected' : '' "
                 (click)="setPaymentMethod('cash')">
-                <ion-icon class="zmdi zmdi-money-box"></ion-icon>
+                <ion-icon name="cash-outline"></ion-icon>
+                <!-- <ion-icon class="zmdi zmdi-money-box"></ion-icon> -->
                 {{'cash' | translate}}
             </h2>
             <h2 class="d-flex " [ngClass]="payment_method == 'card_business' ? 'selected' : '' "
                 (click)="setPaymentMethod('card_business')">
-                <ion-icon class="zmdi zmdi-card"></ion-icon>
+                <ion-icon name="card-outline"></ion-icon>
+                <!-- <ion-icon class="zmdi zmdi-card"></ion-icon> -->
                 {{'business_card' | translate}}
             </h2>
             <h2 class="d-flex " [ngClass]="payment_method == 'card_personal' ? 'selected' : '' "
                 (click)="setPaymentMethod('card_personal')">
-                <ion-icon class="zmdi zmdi-card"></ion-icon>
+                <!-- <ion-icon class="zmdi zmdi-card"></ion-icon> -->
+                <ion-icon name="card-outline"></ion-icon>
                 {{'personal_card' | translate}}
             </h2>
         </div>
@@ -60,32 +63,33 @@
         
         <ion-list class="animated zoomIn delay_3 phase_one_search" *ngIf="phase == 1 && !fabAction" style="padding-bottom: 20px" lines="none">
             <div style="padding: 20px">
-                <p style="font-size: 12px; padding-bottom: 5px;">{{'welcome_back' | translate}}</p>
-                <h2 style="font-weight: bold;">{{'where_to_go' | translate}}</h2>
+                <p style="font-size: 1.25rem; margin-bottom: 0;">{{'welcome_back' | translate}}</p>
+                <h5 style="font-weight: bold; margin-top: 8px;">{{'where_to_go' | translate}}</h5>
             </div>
             <ion-item>
                 <div class="d-flex item_box">
                     <ion-icon name="location-sharp" (click)="detect()"></ion-icon>
                     <!-- <ion-icon class="material-icons" (click)="detect()">location_on</ion-icon> -->
-                    <ion-searchbar [(ngModel)]="querySource" (ionInput)="searchPlaceSource()"
+                    <ion-searchbar [(ngModel)]="querySource" (ionChange)="searchPlaceSource()"
                         placeholder="{{'enter_source' | translate}}"></ion-searchbar>
-                    <ion-icon class="material-icons end" (click)="navSavedAddress(1)">attachment</ion-icon>
+                        <ion-icon name="attach-outline" (click)="navSavedAddress(1)"></ion-icon>
+                    <!-- <ion-icon class="material-icons end" (click)="navSavedAddress(1)">attachment</ion-icon> -->
                 </div>
             </ion-item>
             <ion-item>
                 <div class="d-flex item_box">
                     <ion-icon name="navigate"></ion-icon>
-                    <!-- <ion-icon class="material-icons">near_me</ion-icon> -->
-                    <ion-searchbar [(ngModel)]="queryDestination" (ionInput)="searchPlaceDestination()"
+                    <ion-searchbar [(ngModel)]="queryDestination" (ionChange)="searchPlaceDestination()"
                         placeholder="{{'enter_destination' | translate}}"></ion-searchbar>
-                    <ion-icon class="material-icons end" (click)="navSavedAddress(2)">attachment</ion-icon>
+                        <ion-icon name="attach-outline" (click)="navSavedAddress(2)"></ion-icon>
+                    <!-- <ion-icon class="material-icons end" (click)="navSavedAddress(2)">attachment</ion-icon> -->
                 </div>
             </ion-item>
         </ion-list>
         <ion-list lines="none" *ngIf="places && places.length && !fabAction" class="search_list">
             <ion-item class="animated slideInRight" *ngFor="let place of places">
                 <div class="d-flex item_box" (click)="selectPlace(place)">
-                    <ion-icon class="material-icons">room</ion-icon>
+                    <ion-icon name="location-sharp"></ion-icon>
                     <h2>{{place.description}}</h2>
                 </div>
             </ion-item>
@@ -98,11 +102,13 @@
                     {{'wallet' | translate}}
                 </h2>
                 <h2 *ngIf="payment_method == 'cash'" class="d-flex end">
-                    <ion-icon class="zmdi zmdi-money-box"></ion-icon>
+                    <ion-icon name="cash-outline"></ion-icon>
+                    <!-- <ion-icon class="zmdi zmdi-money-box"></ion-icon> -->
                     {{'cash' | translate}}
                 </h2>
                 <h2 *ngIf="payment_method != 'cash' && payment_method != 'wallet'" class="d-flex end">
-                    <ion-icon class="zmdi zmdi-card"></ion-icon>
+                    <!-- <ion-icon class="zmdi zmdi-card"></ion-icon> -->
+                    <ion-icon name="card-outline"></ion-icon>
                     {{ ((payment_method == 'card_business') ? 'business_card' : 'personal_card') | translate}}
                 </h2>
             </div>
@@ -112,22 +118,23 @@
         </div>
 
         <div *ngIf="phase == 2" class="phase_two animated slideInUp delay_3">
-            <ion-list lines="none" radio-group [(ngModel)]="vehicleTypeId" required>
-                <ion-scroll scrollX="true">
-                    <ion-item *ngFor="let vt of vehicleTypes">
-                        <ion-label>
-                            <div class="img_box">
-                                <img *ngIf="!vt.image_url || !vt.image_url.length" src="assets/imgs/car1.png">
-                                <img *ngIf="vt.image_url && vt.image_url.length" data-src="{{vt.image_url}}">
-                            </div>
-                            <h2>{{vt.title}}</h2>
-                            <h3>{{ (vt.estimated_fare - (vt.estimated_fare * 10)/100).toFixed(2)}} - {{(vt.estimated_fare + (vt.estimated_fare * 10)/100).toFixed(2)}} {{currency}}</h3>
-                        </ion-label>
-                        <ion-radio [value]="vt.id" (ionSelect)="loadNearbyDrivers()"></ion-radio>
-                    </ion-item>
-                </ion-scroll>
-            </ion-list>
-
+            <ion-radio-group  [(ngModel)]="vehicleTypeId" required>
+                <ion-list lines="none" >
+                    <!-- <ion-scroll scrollX="true"> -->
+                        <ion-item *ngFor="let vt of vehicleTypes">
+                            <ion-label>
+                                <div class="img_box">
+                                    <img *ngIf="!vt.image_url || !vt.image_url.length" src="assets/imgs/car1.png">
+                                    <img *ngIf="vt.image_url && vt.image_url.length" data-src="{{vt.image_url}}">
+                                </div>
+                                <h2>{{vt.title}}</h2>
+                                <h3>{{ (vt.estimated_fare - (vt.estimated_fare * 10)/100).toFixed(2)}} - {{(vt.estimated_fare + (vt.estimated_fare * 10)/100).toFixed(2)}} {{currency}}</h3>
+                            </ion-label>
+                            <ion-radio [value]="vt.id" (ionSelect)="loadNearbyDrivers()"></ion-radio>
+                        </ion-item>
+                    <!-- </ion-scroll> -->
+                </ion-list>
+            </ion-radio-group>
 
             <div class="form promocode">
                 <ion-list lines="none">

@@ -11,7 +11,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-add_card',
   templateUrl: 'add_card.html',
-  providers: [CommonUiElement, ClientService]
+  providers: [CommonUiElement, ClientService],
+  styleUrls: ['add_card.scss'],
 })
 export class Add_cardPage {
   private subscriptions: Array<Subscription> = [];

@@ -1,8 +1,8 @@
 <ion-header class="theme_header">
     <ion-toolbar>
-        <button ion-button>
+        <ion-button>
             <ion-menu-button></ion-menu-button>
-        </button>
+        </ion-button>
         <ion-title>
             <h2>{{'saved_address' | translate}}</h2>
             <p>{{ (pick ? 'select_address' : 'pre_save_address_for_faster_cab_booking_pricess') | translate}}</p>
@@ -17,7 +17,7 @@
             <span style="color:#9E9E9E; font-weight:bold;">{{'empty_addresses' | translate}}</span>
         </div>
     </div>
-    <ion-list no-lines>
+    <ion-list lines="none">
         <ion-item *ngFor="let address of addresses" (click)="addressPage(address)">
             <div [ngSwitch]="address.title" class="icon_box" item-start>
                 <ion-icon *ngSwitchDefault class="material-icons">home</ion-icon>
@@ -30,8 +30,10 @@
     </ion-list>
 </ion-content>
 
-<ion-footer no-border>
-    <button ion-button full no-margin text-uppercase item-start class="btn" (click)="addressPage(null)">
-        <ion-icon class="material-icons">add</ion-icon> {{'add_address' | translate}}
-    </button>
+<ion-footer class="ion-no-border">
+    <ion-button expand="full" item-start class="btn ion-no-margin" (click)="addressPage(null)">
+        <ion-icon name="add-outline"></ion-icon>
+        <!-- <ion-icon class="material-icons">add</ion-icon>  -->
+        {{'add_address' | translate}}
+    </ion-button>
 </ion-footer>

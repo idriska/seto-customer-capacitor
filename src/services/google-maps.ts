@@ -2,8 +2,10 @@ import { Injectable, Inject } from '@angular/core';
 import { Connectivity } from './connectivity-service';
 import { APP_CONFIG, AppConfig } from '../app/app.config';
 import { MyLocation } from '../models/my-location.models';
+import { } from '@types/googlemaps';
 
-declare var google
+
+// declare var google
 
 @Injectable()
 export class GoogleMaps {

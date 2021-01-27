@@ -1,4 +1,4 @@
-page-add_card {
+:host{
     ion-header {
         padding-bottom: 20px !important;
     }
@@ -9,7 +9,7 @@ page-add_card {
 
         p {
             margin: 0;
-            color: $gray;
+            color: var(--gray);
             font-size: 1.35rem;
             letter-spacing: 0.3px;
             max-width: calc(100% - 21px);
@@ -34,11 +34,11 @@ page-add_card {
 
             ion-row {
                 ion-col {
-                    .item {
+                    ion-item {
                         border-bottom: none !important;
                         margin: 0;
 
-                        .radio {
+                        ion-radio {
                             margin: 0;
                             margin-right: 12px;
                         }
@@ -52,5 +52,9 @@ page-add_card {
                 }
             }
         }
+    }
+
+    .btn{
+        text-transform: uppercase;
     }
 }

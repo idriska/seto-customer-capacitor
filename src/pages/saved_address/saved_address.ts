@@ -11,7 +11,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-saved_address',
   templateUrl: 'saved_address.html',
-  providers: [CommonUiElement, ClientService]
+  providers: [CommonUiElement, ClientService],
+  styleUrls: ['saved_address.scss'],
 })
 export class Saved_addressPage {
   private subscriptions: Array<Subscription> = [];

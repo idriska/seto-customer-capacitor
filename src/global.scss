@@ -318,7 +318,7 @@ ion-header {
         }
     }
 
-    .toolbar {
+    ion-toolbar {
         // .toolbar-background {
         //     background-color: transparent;
         //     border: none !important;
@@ -597,7 +597,7 @@ ion-header {
 
 ion-menu {
     background: none !important;
-
+    
     ion-header {
         padding-top: 10px;
 
@@ -680,23 +680,35 @@ ion-menu {
                 background: none;
                 padding: 13px 20px 13px 20px;
                 min-height: unset;
+
+                --inner-padding-end: 0px;
+                --padding-start:0px;
                 
-                .item-inner {
-                    padding: 0;
-
-                    .label {
-                        margin: 0;
-
-                        h2 {
-                            color: var(--white);
-                            text-transform: capitalize;
-                            font-size: 2rem;
-                            letter-spacing: 0.5px;
-                            font-weight: 500;
-                            width: auto;
-                        }
-                    }
+                h2 {
+                    margin: 0;
+                    color: var(--white);
+                    text-transform: capitalize;
+                    font-size: 2rem;
+                    letter-spacing: 0.5px;
+                    font-weight: 500;
+                    width: auto;
                 }
+                // .item-inner {
+                //     padding: 0;
+
+                //     .label {
+                //         margin: 0;
+
+                //         h2 {
+                //             color: var(--white);
+                //             text-transform: capitalize;
+                //             font-size: 2rem;
+                //             letter-spacing: 0.5px;
+                //             font-weight: 500;
+                //             width: auto;
+                //         }
+                //     }
+                // }
             }
         }
     }
@@ -882,7 +894,7 @@ ion-menu {
                     background: var(--info);
                 }
 
-                ion-scroll .item {
+                ion-scroll ion-item {
                     .item-inner .label h2 {
                         color: var(--white);
                         font-weight: 600;
@@ -1095,7 +1107,7 @@ ion-menu {
             ion-list {
                 background: var(--info);
 
-                ipon-item .item-inner .label h2 {
+                ion-item  h2 {
                     color: var(--white);
                     font-weight: 600;
                 }
@@ -1108,10 +1120,10 @@ ion-menu {
         font-weight: 500;
     }
 
-    page-managelanguage .list .item {
+    page-managelanguage ion-list ion-item {
         background: var(--info);
 
-        .label h3 {
+        h3 {
             color: var(--white);
             font-weight: 600;
         }
@@ -1209,7 +1221,7 @@ ion-menu {
         background: var(--bg-color);
     }
 
-    .menu-inner .scroll-content {
+    ion-menu ion-content {
         background: #fff;
     }
 }
@@ -1219,9 +1231,9 @@ ion-menu {
     //        direction: rtl;
     //    }
 
-    .header {
-        .toolbar {
-            .title {
+    ion-header {
+        ion-toolbar {
+            ion-title {
                 .toolbar-title {
                     .end {
                         margin-left: 0 !important;
@@ -1277,16 +1289,16 @@ ion-menu {
         }
     }
 
-    page-trip_info .list .item .item_box,
-    page-my_trips .list .item .item_box,
-    page-book_ride .list .item .item_box,
-    page-locatino_selected .list .item .item_box,
-    page-search .list .item .item_box {
+    page-trip_info ion-list ion-item .item_box,
+    page-my_trips ion-list ion-item .item_box,
+    page-book_ride ion-list ion-item .item_box,
+    page-locatino_selected ion-list ion-item .item_box,
+    page-search ion-list ion-item .item_box {
         ion-icon {
             text-align: right;
         }
 
-        .input {
+        & input {
             border-left: 0;
             border-right: 1px solid var(--theme-color);
 
@@ -1353,8 +1365,8 @@ ion-menu {
         }
     }
 
-    .menu-inner {
-        .header .profile_box .profile_img {
+    ion-menu {
+        ion-header .profile_box .profile_img {
             margin-right: 0px;
             margin-left: 15px;
         }

@@ -20,7 +20,7 @@ import { Events } from 'src/services/event-handler.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  // styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent {
   userMe: User;
@@ -31,7 +31,7 @@ export class AppComponent {
     private translate: TranslateService, private statusBar: StatusBar, private splashScreen: SplashScreen,
     private clientService: ClientService, private cue: CommonUiElement, private menu: MenuController, private navCtrl: RouterWrapperService,
     public inAppBrowser: InAppBrowser) {
-      console.log("GELDI", this.userMe);
+    
     this.initializeApp();
     this.refreshSettings();
     events.subscribe('language:selection', (language) => {

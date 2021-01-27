@@ -2,8 +2,8 @@
   ion-header {
     --background: none !important;
 
-    .toolbar {
-      .toolbar-content {
+    ion-toolbar {
+      
         position: absolute;
         width: 100%;
         left: 13px;
@@ -15,7 +15,7 @@
             text-transform: uppercase;
           }
         }
-      }
+      
 
       &::before {
         content: "";
@@ -74,19 +74,25 @@
       min-height: unset;
       background: none;
 
-      &::ng-deep {
-        .item-inner {
-          padding: 0;
-          min-height: unset;
-          border: none !important;
-          box-shadow: none !important;
+      --inner-padding-end: 0px;
+      --padding-start:0px;
+      --margin: 0;
 
-          .label {
-            margin: 0;
-            white-space: normal;
-          }
-        }
-      }
+      --ion-background-color: transparent !important;
+
+      // &::ng-deep {
+      //   .item-inner {
+      //     padding: 0;
+      //     min-height: unset;
+      //     border: none !important;
+      //     box-shadow: none !important;
+
+      //     .label {
+      //       margin: 0;
+      //       white-space: normal;
+      //     }
+      //   }
+      // }
 
       ion-icon {
         &.end {
@@ -97,12 +103,13 @@
       }
 
       ion-searchbar {
-        --placeholder-color: var(info);
+        // --placeholder-color: var(--info);
         --color: var(--white);
         --margin: 0;
         min-height: unset;
         font-size: 1.3rem;
         font-weight: 400;
+       
         &::ng-deep {
           .text-input {
             margin: 0;
@@ -125,21 +132,26 @@
           position: relative;
           z-index: 99;
           // background: var(--item_bg);
+          background: white;
 
           &.end {
-            color: var(info);
+            color: var(--info);
             min-width: 18px;
           }
         }
 
         ion-searchbar {
           padding: 0;
+          background: rgba(0, 0, 0, 0.2);
+          height: 44px;
+          
           &::ng-deep {
-            .searchbar-input-container {
+              .searchbar-input-container {
               .searchbar-search-icon {
                 display: none;
               }
             }
+
             .searchbar-clear-icon {
               right: 5px;
               color: var(--white);
@@ -200,15 +212,16 @@
       width: 100%;
       margin: 0 auto;
       padding: 5px 0px;
-      background: var(--item_bg) !important;
+      // background: var(--item_bg) !important;
       overflow: hidden;
       position: relative;
       z-index: 99;
 
-      .item {
+      ion-item {
         border-radius: 0;
         width: 100%;
-        border-bottom: 1px solid var(--bg-color) !important;
+        border-bottom: 1px solid black !important;
+        // border-bottom: 1px solid var(--bg-color) !important;
         margin: 0;
         min-height: unset;
         padding: 11px 13px;
@@ -487,7 +500,7 @@
       border-radius: 15px 15px 0 0;
     }
     .phase_one {
-      background: var(bg-color);
+      background: var(--bg-color);
 
       .btn_box {
         padding: 16px 20px;
@@ -524,11 +537,11 @@
     }
 
     .phase_two {
-      .button.btn[clear] {
-        background: var(bg-color) !important;
+      .btn[clear] {
+        background: var(--bg-color) !important;
       }
 
-      .list {
+      ion-list {
         margin-bottom: 0;
         margin-top: 10px;
         overflow: hidden;
@@ -543,16 +556,16 @@
           margin: 0 auto;
           width: calc(100% - 43px);
           height: calc(100% - 24px);
-          background: var(item-bg);
+          background: var(--item-bg);
           border-radius: 10px 10px 0 0;
         }
 
-        ion-scroll {
-          white-space: nowrap;
-          height: 167px;
-          margin-bottom: 0;
+        // ion-scroll {
+        //   white-space: nowrap;
+        //   height: 167px;
+        //   margin-bottom: 0;
 
-          .item {
+          ion-item {
             display: inline-block;
             padding: 0 10px 10px 10px;
             background: none;
@@ -570,7 +583,7 @@
               left: 0;
               bottom: 0;
               height: calc(100% - 15px);
-              background: var(item-bg);
+              background: var(--item-bg);
               border-radius: 10px;
               display: block !important;
             }
@@ -584,56 +597,60 @@
               bottom: -100%;
             }
 
-            .item-inner {
-              padding: 0;
+            --inner-padding-end: 0px;
+            --padding-start:0px;
+           
+            .img_box {
+              position: relative;
+              overflow: hidden;
+              width: 55px;
+              display: block;
+              margin: 0 auto;
+              margin-bottom: 6px;
+              text-align: center;
+            }
 
-              .label {
-                margin: 0;
-                z-index: 99;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                padding: 0 10px;
+            h2 {
+              font-size: 1.2rem;
+              color: var(--white);
+              letter-spacing: 0.5px;
+            }
 
-                .img_box {
-                  position: relative;
-                  overflow: hidden;
-                  width: 55px;
-                  display: block;
-                  margin: 0 auto;
-                  margin-bottom: 6px;
-                  text-align: center;
-                }
+            h3 {
+              // color: lighten($info, 5%);
+              font-size: 1rem;
+              font-weight: 500;
+              margin-top: 4px;
+            }
 
-                h2 {
-                  font-size: 1.2rem;
-                  color: var(--white);
-                  letter-spacing: 0.5px;
-                }
+            // .label {
+            //   margin: 0;
+            //   z-index: 99;
+            //   position: absolute;
+            //   width: 100%;
+            //   height: 100%;
+            //   top: 0;
+            //   left: 0;
+            //   padding: 0 10px;
 
-                h3 {
-                  // color: lighten($info, 5%);
-                  font-size: 1rem;
-                  font-weight: 500;
-                  margin-top: 4px;
-                }
-              }
+              
+            // }
 
-              .radio {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                bottom: 0;
-                z-index: 99;
-                margin: 0;
+            ion-radio {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              left: 0;
+              bottom: 0;
+              z-index: 99;
+              margin: 0;
 
-                .radio-icon {
-                  display: none;
-                }
-              }
+              --color:transparent;
+              --color-checked: transparent;
+
+              // .radio-icon {
+              //   display: none;
+              // }
             }
 
             &.item-radio-checked {
@@ -656,7 +673,7 @@
               margin-right: 10px;
             }
           }
-        }
+        // }
       }
 
       ion-button {

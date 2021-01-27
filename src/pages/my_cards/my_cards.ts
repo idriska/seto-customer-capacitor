@@ -10,7 +10,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-my_cards',
   templateUrl: 'my_cards.html',
-  providers: [CommonUiElement, ClientService]
+  providers: [CommonUiElement, ClientService],
+  styleUrls: ['my_cards.scss'],
 })
 export class My_cardsPage {
   private subscriptions: Array<Subscription> = [];

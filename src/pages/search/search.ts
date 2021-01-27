@@ -28,7 +28,7 @@ import firebase from "firebase";
 import * as moment from "moment";
 import { RouterWrapperService } from "src/services/router-wrapper.service";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
-declare var google;
+// declare var google;
 
 
 @Component({
@@ -252,7 +252,6 @@ export class SearchPage {
   }
 
   ionViewDidEnter(): void {
-    console.log("IonViewDidEnter")
     if (!this.initialized) {
       let mapLoaded = this.maps
         .init(
@@ -262,10 +261,12 @@ export class SearchPage {
         )
         .then(() => {
           this.autocompleteService = new google.maps.places.AutocompleteService();
+          console.log("autocompleteService", this.autocompleteService)
           this.placesService = new google.maps.places.PlacesService(
             this.maps.map
             );
           this.searchDisabled = false;
+          
           // this.maps.map.addListener('click', (event) => {
           //   if (event && event.latLng) {
           //     this.onMapClick(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
@@ -290,10 +291,8 @@ export class SearchPage {
         //this.close();
       });
     }
-  }
 
-  ionViewDidLeave() {
-    console.log("IonViewDidLeave")
+    // ionViewDidLeave()
     let locationTemp = JSON.parse(
       window.localStorage.getItem(Constants.KEY_LOCATION_TEMP)
     );
@@ -309,6 +308,24 @@ export class SearchPage {
     }
     window.localStorage.removeItem(Constants.KEY_CARD_TEMP);
   }
+
+  // ionViewDidLeave() {
+  //   console.log("IonViewDidLeave")
+  //   let locationTemp = JSON.parse(
+  //     window.localStorage.getItem(Constants.KEY_LOCATION_TEMP)
+  //   );
+  //   if (locationTemp != null) this.markLocationSelected(locationTemp);
+  //   window.localStorage.removeItem(Constants.KEY_LOCATION_TEMP);
+
+  //   let cardTemp = JSON.parse(
+  //     window.localStorage.getItem(Constants.KEY_CARD_TEMP)
+  //   );
+  //   if (cardTemp != null) {
+  //     this.cardSelected = cardTemp;
+  //     this.next();
+  //   }
+  //   window.localStorage.removeItem(Constants.KEY_CARD_TEMP);
+  // }
 
   checkExistingRides() {
     this.translate.get("rides_loading_ongoing").subscribe((value) => {
@@ -503,28 +520,28 @@ export class SearchPage {
   }
 
   searchPlace(query: string) {
-    console.log(this.autocompleteService)
-    //this.saveDisabled = true;
-    // if (query.length > 0 && !this.searchDisabled) {
-    //   let config = {
-    //     input: query,
-    //     componentRestrictions: { country: "AT" },
-    //   };
-    //   this.autocompleteService.getPlacePredictions(
-    //     config,
-    //     (predictions, status) => {
-    //       if (
-    //         status == google.maps.places.PlacesServiceStatus.OK &&
-    //         predictions
-    //       ) {
-    //         this.places = [];
-    //         predictions.forEach((prediction) => this.places.push(prediction));
-    //       }
-    //     }
-    //   );
-    // } else {
-    //   this.places = [];
-    // }
+    // this.saveDisabled = true;
+    if (query.length > 0 && !this.searchDisabled) {
+      let config = {
+        input: query,
+        componentRestrictions: { country: "AT" },
+      };
+      this.autocompleteService.getPlacePredictions(
+        config,
+        (predictions, status) => {
+          if (
+            status == google.maps.places.PlacesServiceStatus.OK &&
+            predictions
+          ) {
+            this.places = [];
+            predictions.forEach((prediction) => this.places.push(prediction));
+          }
+        }
+      );
+    } else {
+      this.places = [];
+    }
+    console.log(this.places)
   }
 
   selectPlace(place) {

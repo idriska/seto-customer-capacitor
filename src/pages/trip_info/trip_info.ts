@@ -5,7 +5,7 @@ import { GoogleMaps } from '../../services/google-maps';
 import { Rate_ridePage } from '../rate_ride/rate_ride';
 import { Helper } from '../../models/helper.models';
 import { RouterWrapperService } from 'src/services/router-wrapper.service';
-declare var google
+// declare var google
 
 
 @Component({
