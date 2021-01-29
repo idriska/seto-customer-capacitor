@@ -20,7 +20,8 @@
     <ion-list lines="none">
         <ion-item class="animated slideInRight" *ngFor="let faq of faqs" [ngClass]="faq.id == curFaqId ? 'active' : '' " (click)="expandFaq(faq)">
             <h2 class="d-flex">{{faq.title}}
-                <ion-icon class="material-icons end">keyboard_arrow_down</ion-icon>
+                <ion-icon name="chevron-down"></ion-icon>
+                <!-- <ion-icon class="material-icons end">keyboard_arrow_down</ion-icon> -->
             </h2>
             <h3>{{faq.short_description}}</h3>
             <p>{{faq.description}}</p>

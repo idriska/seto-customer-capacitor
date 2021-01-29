@@ -4,7 +4,8 @@
             <ion-menu-button></ion-menu-button>
           </ion-button>
         <div class="back_btn" *ngIf="phase == 2" (click)="clearToPhase(1)">
-            <ion-icon md="md-arrow-back" ios="ios-arrow-back"></ion-icon>
+            <ion-icon name="chevron-back"></ion-icon>
+            <!-- <ion-icon md="md-arrow-back" ios="ios-arrow-back"></ion-icon> -->
         </div>
     </ion-toolbar>
 </ion-header>
@@ -49,10 +50,11 @@
                 <div class="animation_box d"></div>
             </div>
 
-            <ion-fab center bottom (click)="cancelSearch()">
-                <button ion-fab>
-                    <ion-icon class="material-icons">clear</ion-icon>
-                </button>
+            <ion-fab  vertical="center" horizontal="center" (click)="cancelSearch()">
+                <ion-fab-button>
+                    <ion-icon name="close"></ion-icon>
+                    <!-- <ion-icon class="material-icons">clear</ion-icon> -->
+                </ion-fab-button>
             </ion-fab>
         </div>
     </div>
@@ -70,7 +72,7 @@
                 <div class="d-flex item_box">
                     <ion-icon name="location-sharp" (click)="detect()"></ion-icon>
                     <!-- <ion-icon class="material-icons" (click)="detect()">location_on</ion-icon> -->
-                    <ion-searchbar [(ngModel)]="querySource" (ionChange)="searchPlaceSource()"
+                    <ion-searchbar [(ngModel)]="querySource" (ionInput)="searchPlaceSource($event.target.value)"
                         placeholder="{{'enter_source' | translate}}"></ion-searchbar>
                         <ion-icon name="attach-outline" (click)="navSavedAddress(1)"></ion-icon>
                     <!-- <ion-icon class="material-icons end" (click)="navSavedAddress(1)">attachment</ion-icon> -->
@@ -79,7 +81,7 @@
             <ion-item>
                 <div class="d-flex item_box">
                     <ion-icon name="navigate"></ion-icon>
-                    <ion-searchbar [(ngModel)]="queryDestination" (ionChange)="searchPlaceDestination()"
+                    <ion-searchbar [(ngModel)]="queryDestination" (ionInput)="searchPlaceDestination($event.target.value)"
                         placeholder="{{'enter_destination' | translate}}"></ion-searchbar>
                         <ion-icon name="attach-outline" (click)="navSavedAddress(2)"></ion-icon>
                     <!-- <ion-icon class="material-icons end" (click)="navSavedAddress(2)">attachment</ion-icon> -->
@@ -118,24 +120,25 @@
         </div>
 
         <div *ngIf="phase == 2" class="phase_two animated slideInUp delay_3">
-            <ion-radio-group  [(ngModel)]="vehicleTypeId" required>
-                <ion-list lines="none" >
-                    <!-- <ion-scroll scrollX="true"> -->
-                        <ion-item *ngFor="let vt of vehicleTypes">
-                            <ion-label>
-                                <div class="img_box">
-                                    <img *ngIf="!vt.image_url || !vt.image_url.length" src="assets/imgs/car1.png">
-                                    <img *ngIf="vt.image_url && vt.image_url.length" data-src="{{vt.image_url}}">
-                                </div>
-                                <h2>{{vt.title}}</h2>
-                                <h3>{{ (vt.estimated_fare - (vt.estimated_fare * 10)/100).toFixed(2)}} - {{(vt.estimated_fare + (vt.estimated_fare * 10)/100).toFixed(2)}} {{currency}}</h3>
-                            </ion-label>
-                            <ion-radio [value]="vt.id" (ionSelect)="loadNearbyDrivers()"></ion-radio>
-                        </ion-item>
-                    <!-- </ion-scroll> -->
-                </ion-list>
-            </ion-radio-group>
-
+            <div class="scroll" scrollY="true">
+                <ion-radio-group  [(ngModel)]="vehicleTypeId" required>
+                    <ion-list lines="none" >
+                        <!-- <ion-scroll scrollX="true"> -->
+                            <ion-item *ngFor="let vt of vehicleTypes">
+                                <ion-label>
+                                    <div class="img_box">
+                                        <img *ngIf="!vt.image_url || !vt.image_url.length" src="assets/imgs/car1.png">
+                                        <img *ngIf="vt.image_url && vt.image_url.length" data-src="{{vt.image_url}}">
+                                    </div>
+                                    <h2>{{vt.title}}</h2>
+                                    <h3>{{ (vt.estimated_fare - (vt.estimated_fare * 10)/100).toFixed(2)}} - {{(vt.estimated_fare + (vt.estimated_fare * 10)/100).toFixed(2)}} {{currency}}</h3>
+                                </ion-label>
+                                <ion-radio [value]="vt.id" (ionSelect)="loadNearbyDrivers()"></ion-radio>
+                            </ion-item>
+                        <!-- </ion-scroll> -->
+                    </ion-list>
+                </ion-radio-group>
+            </div>
             <div class="form promocode">
                 <ion-list lines="none">
                     <ion-item>
@@ -192,34 +195,39 @@
                     </span>
                 </h5>
                 <div class="d-flex item_box">
-                    <ion-icon class="material-icons">location_on</ion-icon>
+                    <ion-icon name="location-sharp"></ion-icon>
+                    <!-- <ion-icon class="material-icons">location_on</ion-icon> -->
                     <p>{{ride.address_from}}</p>
                 </div>
                 <div class="d-flex item_box">
-                    <ion-icon class="material-icons">near_me</ion-icon>
+                    <ion-icon name="navigate"></ion-icon>
+                    <!-- <ion-icon class="material-icons">near_me</ion-icon> -->
                     <p>{{ride.address_to}}</p>
                 </div>
             </ion-item>
             <ion-item class="ride_details">
                 <ion-row>
-                    <ion-col col-4>
+                    <ion-col size="4">
                         <h5>{{'payment_via' | translate}}</h5>
                         <h2 class="d-flex">
-                            <ion-icon class="material-icons">account_balance_wallet</ion-icon>
+                            <ion-icon name="wallet"></ion-icon>
+                            <!-- <ion-icon class="material-icons">account_balance_wallet</ion-icon> -->
                             {{ride.payment_method.title | translate}}
                         </h2>
                     </ion-col>
-                    <ion-col col-4>
+                    <ion-col size="4">
                         <h5>{{'ride_fare' | translate}}</h5>
                         <h2 class="d-flex">
-                            <ion-icon class="material-icons">account_balance_wallet</ion-icon>
+                            <ion-icon name="wallet"></ion-icon>
+                            <!-- <ion-icon class="material-icons">account_balance_wallet</ion-icon> -->
                             {{currency}} {{ride.estimated_fare}}
                         </h2>
                     </ion-col>
-                    <ion-col col-4>
+                    <ion-col size="4">
                         <h5>{{'ride_type' | translate}}</h5>
                         <h2 class="d-flex">
-                            <ion-icon class="material-icons">directions_car</ion-icon>
+                            <ion-icon name="car-sport"></ion-icon>
+                            <!-- <ion-icon class="material-icons">directions_car</ion-icon> -->
                             {{ride.vehicle_type.title}}
                         </h2>
                     </ion-col>
@@ -228,28 +236,32 @@
         </ion-list>
         <div class="btn_box">
             <ion-row justify-content-end>
-                <ion-col col-4 *ngIf="ride.status == 'pending_accept' && !isAccept" (click)="updateRideStatus('accept_payment')">
+                <ion-col size="4" *ngIf="ride.status == 'pending_accept' && !isAccept" (click)="updateRideStatus('accept_payment')">
                     <h2>
-                        <ion-icon class="material-icons">done</ion-icon>
+                        <!-- <ion-icon class="material-icons">done</ion-icon> -->
+                        <ion-icon name="checkmark"></ion-icon>
                         {{'accept_invoice' | translate}}
                     </h2>
                 </ion-col>
-                <ion-col col-4 (click)="callRider()">
+                <ion-col size="4" (click)="callRider()">
                     <h2>
-                        <ion-icon class="material-icons">phone</ion-icon>
+                        <ion-icon name="call"></ion-icon>
+                        <!-- <ion-icon class="material-icons">phone</ion-icon> -->
                         {{'call_now' | translate}}
                     </h2>
                 </ion-col>
-                <ion-col *ngIf="ride.status == 'pending' || ride.status == 'accepted' || ride.status == 'onway'" col-4
+                <ion-col *ngIf="ride.status == 'pending' || ride.status == 'accepted' || ride.status == 'onway'" size="4"
                     (click)="confirmCancel()">
                     <h2>
-                        <ion-icon class="material-icons">clear</ion-icon>
+                        <ion-icon name="close"></ion-icon>
+                        <!-- <ion-icon class="material-icons">clear</ion-icon> -->
                         {{'cancel' | translate}}
                     </h2>
                 </ion-col>
-                <ion-col col-4>
+                <ion-col size="4">
                     <h2 (click)="toggleFab()" class="more_less_btn">
-                        <ion-icon class="material-icons">keyboard_arrow_up</ion-icon>
+                        <ion-icon name="chevron-up"></ion-icon>
+                        <!-- <ion-icon class="material-icons">keyboard_arrow_up</ion-icon> -->
                         <span class="more">{{'more' | translate}}</span>
                         <span class="less">{{'less' | translate}}</span>
                     </h2>

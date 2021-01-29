@@ -1,18 +1,18 @@
-page-signup {
+:host{
     .form {
         margin-top: 20px;
 
-        .list {
+        ion-list {
             padding-bottom: 25px;
             padding-top: 20px;
 
-            .item {
+            ion-item {
                 margin-bottom: 20px;
             }
         }
 
         .img_box {
-            background: lighten($item_bg, 5%);
+            // background: lighten($item_bg, 5%);
             width: 90px;
             height: 90px;
             border-radius: 12px;
@@ -29,7 +29,8 @@ page-signup {
                 text-align: center;
                 height: 23px;
                 font-size: 2.8rem;
-                color: $theme-color;
+                // color: var(--theme-color);
+                color: white;
             }
         }
 
@@ -40,13 +41,14 @@ page-signup {
             left: 0;
             width: 100%;
             height: 44px;
-            background: $bg-color;
+            background: var(--bg-color);
         }
     }
 
-    .footer {
-        .button.btn {
+    ion-footer {
+        .btn {
             height: 55px;
+            text-transform: uppercase;
         }
     }
 }

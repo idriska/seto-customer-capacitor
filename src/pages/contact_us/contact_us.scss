@@ -31,7 +31,8 @@
   }
 
   ion-content {
-    background: var(--item-bg);
+    --background: white;
+    // --background: var(--item_bg);
   }
 
   .form {
@@ -48,7 +49,7 @@
 
     p {
       font-size: 1.3rem;
-      color: var(--info);
+      // color: var(--info);
       margin: 0;
       letter-spacing: 0;
     }
@@ -59,10 +60,8 @@
 
     ion-item {
       margin-bottom: 16px;
-
-      .item-inner .label {
-        margin-bottom: 0;
-      }
+      --inner-padding-end: 0px;
+      --padding-start: 0px;
 
       &.item-textarea {
         .input-wrapper {

@@ -12,7 +12,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-rate_ride',
   templateUrl: 'rate_ride.html',
-  providers: [ClientService, CommonUiElement]
+  providers: [ClientService, CommonUiElement],
+  styleUrls: ["rate_ride.scss"]
 })
 export class Rate_ridePage {
   private ride: Ride;

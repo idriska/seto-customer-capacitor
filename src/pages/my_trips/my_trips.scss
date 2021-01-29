@@ -1,81 +1,95 @@
-page-my_trips {
-	.header.theme_header {
+:host{
+	ion-header {
 		padding-bottom: 20px;
 
-		.toolbar .title .toolbar-title p {
+		ion-toolbar ion-title p {
 			margin-top: 2px;
 		}
 	}
 
-	.list {
+	ion-list {
 		margin: 0;
+		background: none;
 
 		h2 {
 			margin: 0;
 			font-size: 1.3rem;
-			color: $info_light;
+			color: var(--info_light);
 			font-weight: 400;
 			padding: 10px 24px;
 			padding-bottom: 20px;
 		}
 
-		.item {
+		ion-item {
 			padding: 0px 0px;
-			background: darken($item_bg, 10%);
+			// background: darken($item_bg, 10%);
 			margin: 0 auto;
 			margin-bottom: 11px;
+		
 
-			.item-inner {
-				padding: 0;
-				min-height: unset;
-				border: none !important;
-				box-shadow: none !important;
+			--inner-padding-end: 0px;
+			--padding-start: 0px;
+			--border: none !important;
+			--box-shadow: none !important;
+			
+			&::part(native) { 
+				flex-direction: column;
+			}
+			
+			.item_header {
+				// background: lighten($item_bg, 0%);
+				padding: 11px 19px 11px 19px;
 
-				.label {
-					margin: 0;
-					white-space: normal;
+				.img_box {
+					min-width: 53px;
+					max-width: 53px;
+					height: 53px;
+					border-radius: 7px;
+					margin-right: 13px;
+				}
 
-					.item_header {
-						background: lighten($item_bg, 0%);
-						padding: 11px 19px 11px 19px;
+				.profile_details {
+					width: 100%;
 
-						.img_box {
-							min-width: 53px;
-							max-width: 53px;
-							height: 53px;
-							border-radius: 7px;
-							margin-right: 13px;
+					h3 {
+						margin: 0;
+						font-size: 1.4rem;
+						font-weight: 500;
+						letter-spacing: 0.7px;
+						margin-bottom: 5px;
+						color: var(--white);
+
+						.end {
+							color: var(--theme-color);
+							font-weight: 500;
+							font-size: 1.25rem;
 						}
+					}
 
-						.profile_details {
-							width: 100%;
-
-							h3 {
-								margin: 0;
-								font-size: 1.4rem;
-								font-weight: 500;
-								letter-spacing: 0.7px;
-								margin-bottom: 5px;
-								color: $white;
-
-								.end {
-									color: $theme-color;
-									font-weight: 500;
-									font-size: 1.25rem;
-								}
-							}
-
-							h4 {
-								color: $info_light;
-								font-weight: 500;
-								font-size: 1.2rem;
-							}
-						}
+					h4 {
+						color: var(--info_light);
+						font-weight: 500;
+						font-size: 1.2rem;
 					}
 				}
 			}
 
+			// .item-inner {
+			// 	padding: 0;
+			// 	min-height: unset;
+			// 	border: none !important;
+			// 	box-shadow: none !important;
+
+			// 	.label {
+			// 		margin: 0;
+			// 		white-space: normal;
+
+					
+			// 	}
+			// }
+
 			.rides_details {
+				align-self: flex-start;
 				padding: 5px 19px 5px 19px;
 			}
 
@@ -86,23 +100,24 @@ page-my_trips {
 				position: relative;
 
 				ion-icon {
-					color: $theme-color;
+					color: var(--theme-color);
 					font-size: 1.5rem;
 					min-width: 28px;
 					position: relative;
 					z-index: 99;
 					top: 4px;
-					background: darken($item_bg, 10%);
+					// background: darken($item_bg, 10%);
 
 					&.end {
-						color: $info_light;
+						color: var(--info_light);
 						min-width: 18px;
 					}
 				}
 
 				h6 {
 					margin: 0;
-					color: #fff;
+					color: black;
+					// color: #fff;
 					display: -webkit-box;
 					font-size: 1.3rem;
 					font-weight: 400;
@@ -115,7 +130,7 @@ page-my_trips {
 
 				h2 {
 					margin: 0;
-					color: $white;
+					color: var(--white);
 					font-size: 1.3rem;
 					font-weight: 400;
 					letter-spacing: 0.5px;
@@ -123,7 +138,7 @@ page-my_trips {
 					span {
 						display: block;
 						padding-top: 3px;
-						color: $info_light;
+						color: var(--info_light);
 						font-weight: 500;
 						font-size: 1.35rem;
 						letter-spacing: 0px;
@@ -138,7 +153,7 @@ page-my_trips {
 					left: 7px;
 					height: 50%;
 					width: 9px;
-					background: url("../assets/imgs/dotted.png");
+					background: url("../../assets/imgs/dotted.png");
 					background-size: 2px;
 					background-repeat: no-repeat;
 					background-repeat: repeat-y;

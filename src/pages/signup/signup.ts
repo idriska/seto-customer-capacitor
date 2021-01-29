@@ -14,7 +14,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
-  providers: [CommonUiElement, ClientService, FirebaseClient]
+  providers: [CommonUiElement, ClientService, FirebaseClient],
+  styleUrls: ['signup.scss']
 })
 export class SignupPage {
   private signUpRequest = new SignUpRequest('', '', '', '');

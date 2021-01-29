@@ -1,29 +1,13 @@
-page-rate_ride {
-    .map {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .card {
+:host {
+    ion-card {
         margin: 15px auto;
         margin-bottom: 0;
-        background: $item-bg;
+        background: var(--item-bg);
         position: relative;
         z-index: 999;
         width: calc(100% - 30px);
 
-        .header {
+        ion-header {
             position: relative;
         }
 
@@ -33,7 +17,7 @@ page-rate_ride {
             padding: 0 20px;
 
             h2 {
-                color: lighten($info, 10%);
+                // color: lighten($info, 10%);
                 margin: 0;
                 font-size: 1.6rem;
                 font-weight: 400;
@@ -43,7 +27,7 @@ page-rate_ride {
             ion-row {
                 margin: 0 -5px;
 
-                .col {
+                ion-col {
                     padding-top: 0;
 
                     &.profile_details {
@@ -55,7 +39,7 @@ page-rate_ride {
 
                         h1 {
                             margin: 0;
-                            color: $white;
+                            color: var(--white);
                             font-size: 1.8rem;
                             font-weight: 400;
                             margin-top: 11px;
@@ -69,14 +53,14 @@ page-rate_ride {
 
                             h3 {
                                 font-size: 1.25rem;
-                                color: $info;
+                                color: var(--info);
                                 font-weight: 400;
                                 letter-spacing: 0.5px;
                                 line-height: 20px;
                             }
 
                             h4 {
-                                color: $white;
+                                color: var(--white);
                                 font-size: 1.2rem;
                                 font-weight: 400;
                                 letter-spacing: 0.7px;
@@ -86,7 +70,7 @@ page-rate_ride {
 
                     &.ride_fare_details {
                         h3 {
-                            color: $theme-color;
+                            color: var(--theme-color);
                             font-size: 3rem;
                             font-weight: 600;
                             margin-bottom: 28px;
@@ -94,11 +78,11 @@ page-rate_ride {
                         }
 
                         h4 {
-                            color: $white;
+                            color: var(--white);
                             font-size: 1.45rem;
 
                             ion-icon {
-                                color: $theme-color;
+                                color: var(--theme-color);
                                 font-size: 1.7rem;
                                 margin-right: 7px;
                                 top: 2px;
@@ -116,7 +100,7 @@ page-rate_ride {
                 h2 {
                     span {
                         strong {
-                            color: $white;
+                            color: var(--white);
                             font-weight: 400;
                         }
                     }
@@ -129,7 +113,7 @@ page-rate_ride {
                     position: relative;
 
                     ion-icon {
-                        color: $theme-color;
+                        color: var(--theme-color);
                         font-size: 1.5rem;
                         min-width: 28px;
                         position: relative;
@@ -139,7 +123,7 @@ page-rate_ride {
 
                     p {
                         margin: 0;
-                        color: $white;
+                        color: var(--white);
                         font-size: 1.3rem;
                         font-weight: 400;
                         letter-spacing: 0.5px;
@@ -153,7 +137,7 @@ page-rate_ride {
                         left: 7px;
                         height: 50%;
                         width: 9px;
-                        background: url("../assets/imgs/dotted.png");
+                        background: url("../../assets/imgs/dotted.png");
                         background-size: 1px;
                         background-repeat: no-repeat;
                         background-repeat: repeat-y;
@@ -179,7 +163,7 @@ page-rate_ride {
             }
 
             &.form {
-                border-top: 1px dashed $info;
+                border-top: 1px dashed var(--info);
                 position: relative;
 
                 &::after,
@@ -191,7 +175,7 @@ page-rate_ride {
                     width: 20px;
                     height: 20px;
                     border-radius: 50%;
-                    background: $bg-color;
+                    background: var(--bg-color);
                 }
 
                 &::after {
@@ -211,19 +195,19 @@ page-rate_ride {
 
                     ion-icon {
                         display: inline;
-                        color: $bg-color;
+                        color: var(--bg-color);
                         width: 38px;
                         font-size: 4.5rem;
                         text-align: center;
                         margin: 0 5px;
 
                         &.active {
-                            color: $theme-color;
+                            color: var(--theme-color);
                         }
                     }
                 }
 
-                .list {
+                ion-list {
                     margin-bottom: 0;
 
                     ion-item {
@@ -243,25 +227,25 @@ page-rate_ride {
 
                                 ::-webkit-input-placeholder {
                                     font-size: 1.6rem;
-                                    color: lighten($item-bg, 10%);
+                                    // color: lighten($item-bg, 10%);
                                     font-weight: 400;
                                 }
 
                                 ::-moz-placeholder {
                                     font-size: 1.6rem;
-                                    color: lighten($item-bg, 10%);
+                                    // color: lighten($item-bg, 10%);
                                     font-weight: 400;
                                 }
 
                                 :-ms-input-placeholder {
                                     font-size: 1.6rem;
-                                    color: lighten($item-bg, 10%);
+                                    // color: lighten($item-bg, 10%);
                                     font-weight: 400;
                                 }
 
                                 :-moz-placeholder {
                                     font-size: 1.6rem;
-                                    color: lighten($item-bg, 10%);
+                                    // color: lighten($item-bg, 10%);
                                     font-weight: 400;
                                 }
                             }
@@ -271,9 +255,9 @@ page-rate_ride {
             }
         }
 
-        .button.btn {
+        .btn {
             height: 55px;
-            color: $white;
+            color: var(--white);
             font-weight: 400;
             font-size: 1.8rem;
         }

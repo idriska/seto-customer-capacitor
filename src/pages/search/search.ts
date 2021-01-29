@@ -30,6 +30,9 @@ import { RouterWrapperService } from "src/services/router-wrapper.service";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 // declare var google;
 
+import { interval } from 'rxjs';
+import { take, switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: "page-search",
@@ -497,30 +500,31 @@ export class SearchPage {
       });
   }
 
-  searchPlaceSource() {
-    if (!this.querySource || !this.querySource.length) {
+  searchPlaceSource(querySource) {
+    // console.log(querySource)
+    if (!querySource || !querySource.length) {
       this.locationSource = null;
       this.checkPlotPolyline();
       this.phase = 1;
       window.localStorage.removeItem(Constants.KEY_LOCATION_SOURCE);
     }
     this.searchingFor = 1;
-    this.searchPlace(this.querySource);
+    this.searchPlace(querySource);
   }
 
-  searchPlaceDestination() {
-    if (!this.queryDestination || !this.queryDestination.length) {
+  searchPlaceDestination(queryDestination) {
+    // console.log(queryDestination)
+    if (!queryDestination || !queryDestination.length) {
       this.locationDestination = null;
       this.checkPlotPolyline();
       this.phase = 1;
       window.localStorage.removeItem(Constants.KEY_LOCATION_DESTINATION);
     }
     this.searchingFor = 2;
-    this.searchPlace(this.queryDestination);
+    this.searchPlace(queryDestination);
   }
 
   searchPlace(query: string) {
-    // this.saveDisabled = true;
     if (query.length > 0 && !this.searchDisabled) {
       let config = {
         input: query,
@@ -541,7 +545,6 @@ export class SearchPage {
     } else {
       this.places = [];
     }
-    console.log(this.places)
   }
 
   selectPlace(place) {
@@ -733,10 +736,10 @@ export class SearchPage {
 
                   //TODO: spica real time database
 
-                  // this.subscriptionExistingRides = interval(5000).pipe(
-                  // take(600),
-                  // switchMap(async () => this.checkExistingRides()))
-                  // .subscribe(() => {})
+                  this.subscriptionExistingRides = interval(5000).pipe(
+                  take(600),
+                  switchMap(async () => this.checkExistingRides()))
+                  .subscribe(() => {})
                 },
                 (err) => {
                   this.cue.dismissLoading();

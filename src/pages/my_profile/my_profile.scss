@@ -2,18 +2,15 @@
     .theme_header {
         ion-toolbar {
             ion-icon {
-                &.material-icons {
                     position: absolute;
                     top: 12px;
                     right: 9px;
-                }
+                    font-size: 2.5rem;
             }
         }
     }
 
     .form {
-        margin-top: 20px;
-
         ion-list {
             padding-bottom: 25px;
             padding-top: 20px;
@@ -93,5 +90,9 @@
                 left: -10px;
             }
         }
+    }
+
+    ion-content{
+        --background: white;
     }
 }

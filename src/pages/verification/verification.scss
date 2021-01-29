@@ -2,13 +2,13 @@
     .form {
         margin-top: 20px;
 
-        .list {
+        ion-list {
             padding-top: 68px;
             padding-bottom: 30px;
         }
 
-        .item .item-inner ion-textarea .text-input,
-        .item .item-inner ion-input .text-input {
+        ion-item .item-inner ion-textarea .text-input,
+        ion-item .item-inner ion-input .text-input {
             letter-spacing: 7px;
         }
     }

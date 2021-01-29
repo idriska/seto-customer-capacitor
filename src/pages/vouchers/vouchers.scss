@@ -1,20 +1,25 @@
 :host {
   ion-header {
-    ion-toolbar {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 19px;
-
-      ion-title {
-        text-align: center;
-        text-transform: uppercase;
-      }
+    ion-toolbar ion-title p {
+      margin-top: 0;
+      margin-bottom: 30px;
     }
+    // ion-toolbar {
+    //   // position: absolute;
+    //   width: 100%;
+    //   left: 0;
+    //   top: 19px;
+
+    //   ion-title {
+    //     text-align: center;
+    //     text-transform: uppercase;
+    //   }
+    // }
   }
 
   ion-list {
     margin: 0;
+    background: none;
 
     ion-item {
       background: #fff;
@@ -22,12 +27,12 @@
       width: calc(100% - 43px);
       margin-bottom: 6px;
       border-radius: 9px;
-      padding: 18px 13px;
+      padding: 13px;
       min-height: unset;
-      align-items: flex-start;
 
       --inner-padding-end: 0px;
-      --padding-start:0px;
+      --padding-start: 0px;
+      align-items: baseline;
 
       h2 {
         margin: 0;
@@ -45,18 +50,18 @@
         letter-spacing: 0.3px;
       }
 
-    h3 {
-      margin: 0;
-      border: 1.5px dashed var(--bg-color);
-      color: var(--theme-color);
-      border-radius: 50px;
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 1.5rem;
-      padding: 8px 15px;
-      min-width: 98px;
-      text-align: center;
-    }
+      h3 {
+        margin: 0;
+        border: 1.5px dashed var(--bg-color);
+        color: var(--theme-color);
+        border-radius: 50px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 1.5rem;
+        padding: 8px 15px;
+        min-width: 98px;
+        text-align: center;
+      }
     }
   }
 

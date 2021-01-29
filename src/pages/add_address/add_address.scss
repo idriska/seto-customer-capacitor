@@ -3,11 +3,13 @@
     background: none !important;
 
     ion-toolbar {
+      
       ion-title {
-        text-align: center;
-        text-transform: uppercase;
-        display: flex;
-        align-items: center;
+        // text-align: center;
+        // text-transform: uppercase;
+        // display: flex;
+        // align-items: center;
+       
 
         .btn {
           margin: 0;
@@ -107,7 +109,7 @@
       border-radius: 0 0 5px 5px;
       margin-top: -8px !important;
       padding-top: 8px;
-      background: var(--white) !important;
+      // background: var(--white) !important;
       box-shadow: 0 12px 10px -5px rgba(0, 0, 0, 0.2);
       overflow: hidden;
 

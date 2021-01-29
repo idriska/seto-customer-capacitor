@@ -174,11 +174,11 @@ export class Add_addressPage {
     });
   }
 
-  searchPlace() {
+  searchPlace(query) {
     this.saveDisabled = true;
-    if (this.query.length > 0 && !this.searchDisabled) {
+    if (query.length > 0 && !this.searchDisabled) {
       let config = {
-        input: this.query,
+        input: query,
         componentRestrictions: { country: "AT" },
       };
       this.autocompleteService.getPlacePredictions(
