@@ -3,14 +3,14 @@
     background: none !important;
 
     ion-toolbar {
-      
-      ion-title {
-        // text-align: center;
-        // text-transform: uppercase;
-        // display: flex;
-        // align-items: center;
-       
-
+      ion-button{
+        span{
+          text-transform: uppercase;
+          color: black;
+          font-weight: 600;
+          padding: 0 10px;
+        }
+      }
         .btn {
           margin: 0;
           margin-left: auto;
@@ -21,9 +21,9 @@
           text-transform: unset;
           font-size: 1.4rem;
           letter-spacing: 0.8px;
+          text-transform: uppercase;
         }
-      }
-
+      
       &::before {
         content: "";
         position: absolute;

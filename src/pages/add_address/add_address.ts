@@ -233,6 +233,7 @@ export class Add_addressPage {
         this.addressSaveModal = await this.modalCtrl.create({
           component: Address_titlePage,
           componentProps: { address: this.address },
+          cssClass: 'address_title'
         });
         this.addressSaveModal.present();
         this.addressSaveModal.onDidDismiss((data) => {

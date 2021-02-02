@@ -18,13 +18,16 @@
         </div>
     </div>
     <ion-list lines="none">
-        <ion-item class="animated slideInRight" *ngFor="let faq of faqs" [ngClass]="faq.id == curFaqId ? 'active' : '' " (click)="expandFaq(faq)">
-            <h2 class="d-flex">{{faq.title}}
-                <ion-icon name="chevron-down"></ion-icon>
-                <!-- <ion-icon class="material-icons end">keyboard_arrow_down</ion-icon> -->
-            </h2>
-            <h3>{{faq.short_description}}</h3>
-            <p>{{faq.description}}</p>
+        <ion-item class="animated slideInRight" *ngFor="let faq of faqs" 
+            [ngClass]="faq.id == curFaqId ? 'active' : '' " 
+            (click)="expandFaq(faq)">
+            <div class="item_cont" style="width: 100%;">
+                <h2 class="d-flex">{{faq.title}}
+                    <ion-icon name="chevron-down"></ion-icon>
+                </h2>
+                <h3 class="d-flex">{{faq.short_description}}</h3>
+                <p class="d-flex">{{faq.description}}</p>
+             </div>
         </ion-item>
     </ion-list>
 </ion-content>

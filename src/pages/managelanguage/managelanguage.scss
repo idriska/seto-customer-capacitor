@@ -1,121 +1,76 @@
-page-managelanguage {
-    h2 {
+:host {
+  ion-toolbar {
+    background: var(--bg-color);
+
+    ion-button {
+      span {
+        color: black;
+        font-weight: 600;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  ion-list {
+    margin-top: 5px;
+    background: transparent;
+
+    ion-item {
+      align-items: flex-start;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 5px;
+      min-height: unset;
+      padding: 6px 0;
+    
+      --inner-padding-start: 0;
+      --inner-padding-end: 0;
+
+      ion-radio {
+        display: none;
+      }
+
+      h3 {
         font-size: 1.7rem;
-        font-weight: 500;
-        margin: 0;
-        padding: 26px 30px 23px 30px;
-        color: $theme-color;
-    }
+        letter-spacing: 0.5px;
+        // color: lighten($info, 100%);
+      }
 
-    .list {
-        margin-top: 5px;
+      ion-icon {
+        font-size: 1.95rem;
+        color: var(--theme-color);
+        margin-right: 10px;
+        margin-left: auto;
+        display: none;
+        position: relative;
+        top: 3px;
+      }
+      ion-label {
+        white-space: normal;
+        display: flex;
+        align-content: center;
+      }
 
-        .item {
-            align-items: flex-start;
-            padding: 17px 12px 17px 19px;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 5px;
-            min-height: unset;
-            background: $item_bg;
+      &.add-item {
+        padding: 0;
 
-            .item-inner {
-                padding: 0;
-            }
-
-            .radio {
-                .radio-icon {
-                    display: none;
-                }
-            }
-
-            .label {
-                white-space: normal;
-                display: flex;
-                align-content: center;
-                margin: 0;
-
-                h3 {
-                    font-size: 1.7rem;
-                    font-weight: 500;
-                    letter-spacing: 0.5px;
-                    color: lighten($info, 100%);
-                }
-
-                ion-icon {
-                    font-size: 1.95rem;
-                    color: $theme-color;
-                    margin-right: 0;
-                    margin-left: auto;
-                    display: none;
-                    position: relative;
-                    top: 5px;
-                }
-            }
-
-            &.add-item {
-                padding: 0;
-
-                h2 {
-                    padding: 3px 0;
-                    font-weight: 600;
-
-                    ion-icon {
-                        font-size: 2rem;
-                        margin-right: 13px;
-                        position: relative;
-                        top: 1px;
-                    }
-                }
-            }
-
-            &.item-radio-checked {
-                .label ion-icon {
-                    display: block;
-                }
-            }
-        }
-    }
-
-    ion-footer {
         h2 {
-            padding: 6px 0px;
-            font-size: 1.7rem !important;
-            font-weight: 700 !important;
+          padding: 3px 0;
+          font-weight: 600;
 
-            ion-icon {
-                top: 2px;
-                margin: 0 10px;
-                position: relative;
-            }
+          ion-icon {
+            font-size: 2rem;
+            margin-right: 13px;
+            position: relative;
+            top: 1px;
+          }
         }
+      }
+
+      &.item-radio-checked {
+        ion-icon {
+          display: block;
+        }
+      }
     }
-
-    .empty-view {
-        width: 200px;
-        margin: auto;
-        height: 200px;
-        top: 10%;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 10%;
-
-        img {
-            width: 100px;
-            margin: auto;
-        }
-
-        span {
-            display: block;
-            text-align: center;
-        }
-
-        button {
-            margin-top: 50px;
-
-            span {
-                display: unset !important;
-            }
-        }
-    }
+  }
 }

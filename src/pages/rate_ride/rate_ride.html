@@ -3,7 +3,7 @@
         <ion-header>
             <ion-toolbar>
                 <ion-button>
-                    <ion-menu-button></ion-menu-button>
+                    <ion-back-button text=""></ion-back-button>
                 </ion-button>
             </ion-toolbar>
         </ion-header>
@@ -60,25 +60,13 @@
             </div>
         </div>
         <div class="container form">
-            <h2 text-center>{{'rate_your_ride' | translate}} </h2>
-            <div class="rating_icons d-flex" text-center>
+            <h2 class="ion-text-center">{{'rate_your_ride' | translate}} </h2>
+            <div class="rating_icons d-flex ion-text-center">
                 <ion-icon [name]="rateRequest.rating>=1 ? 'star':'star-outline'" (click)="setRating(1)"></ion-icon>
                 <ion-icon [name]="rateRequest.rating>=2 ? 'star':'star-outline'" (click)="setRating(2)"></ion-icon>
                 <ion-icon [name]="rateRequest.rating>=3 ? 'star':'star-outline'" (click)="setRating(3)"></ion-icon>
                 <ion-icon [name]="rateRequest.rating>=4 ? 'star':'star-outline'" (click)="setRating(4)"></ion-icon>
                 <ion-icon [name]="rateRequest.rating>=5 ? 'star':'star-outline'" (click)="setRating(5)"></ion-icon>
-                
-
-                <!-- <ion-icon [ngClass]="rateRequest.rating>=1 ? 'material-icons active' : 'material-icons'"
-                    (click)="setRating(1)">star_rate</ion-icon>
-                <ion-icon [ngClass]="rateRequest.rating>=2 ? 'material-icons active' : 'material-icons'"
-                    (click)="setRating(2)">star_rate</ion-icon>
-                <ion-icon [ngClass]="rateRequest.rating>=3 ? 'material-icons active' : 'material-icons'"
-                    (click)="setRating(3)">star_rate</ion-icon>
-                <ion-icon [ngClass]="rateRequest.rating>=4 ? 'material-icons active' : 'material-icons'"
-                    (click)="setRating(4)">star_rate</ion-icon>
-                <ion-icon [ngClass]="rateRequest.rating==5 ? 'material-icons active' : 'material-icons'"
-                    (click)="setRating(5)">star_rate</ion-icon> -->
             </div>
             <ion-list lines="none">
                 <ion-item>

@@ -1,28 +1,33 @@
-<ion-header>
+<ion-header class="header_gradient">
 	<ion-toolbar>
-		<button ion-button>
-			<ion-menu-button></ion-menu-button>
-		</button>
-		<ion-title>
+		<ion-button>
+            <ion-back-button text=""></ion-back-button>
+            <span (click)="close()" no-margin>{{'change_language' | translate}}</span>
+        </ion-button>
+		<!-- <ion-title>
 			{{'change_language' | translate}}
-		</ion-title>
+		</ion-title> -->
 	</ion-toolbar>
 </ion-header>
 
 
 <ion-content class="bg-color">
-	<ion-list no-lines radio-group [(ngModel)]="defaultLanguageCode" required>
-		<ion-item *ngFor="let language of config.availableLanguages" (click)="onLanguageClick(language)">
-			<ion-label>
-				<h3>{{language.name}}</h3>
-				<ion-icon name="md-globe"></ion-icon>
-			</ion-label>
-			<ion-radio value="{{language.code}}"></ion-radio>
-		</ion-item>
+	
+	<ion-list lines="none">
+		<ion-radio-group   [(ngModel)]="defaultLanguageCode" required>
+			<ion-item *ngFor="let language of config.availableLanguages" (click)="onLanguageClick(language)">
+				<ion-label>
+					<h3>{{language.name}}</h3>
+					<ion-icon name="globe-outline"></ion-icon>
+					<!-- <ion-icon name="md-globe"></ion-icon> -->
+				</ion-label>
+				<ion-radio value="{{language.code}}"></ion-radio>
+			</ion-item>
+		</ion-radio-group>
 	</ion-list>
 </ion-content>
-<ion-footer no-border>
-	<button ion-button full no-margin class="btn" (click)="languageConfirm()">
+<ion-footer class="ion-no-border">
+	<ion-button expand="full" class="btn ion-no-margin" (click)="languageConfirm()">
 		{{"save" | translate}}
-	</button>
+	</ion-button>
 </ion-footer>

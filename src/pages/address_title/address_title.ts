@@ -5,7 +5,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 
 @Component({
   selector: 'page-address_title',
-  templateUrl: 'address_title.html'
+  templateUrl: 'address_title.html',
+  styleUrls: ["address_title.scss"]
 })
 export class Address_titlePage {
   private address: Address;

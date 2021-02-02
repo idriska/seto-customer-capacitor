@@ -6,7 +6,8 @@ import { Events } from 'src/services/event-handler.service';
 
 @Component({
   selector: 'page-managelanguage',
-  templateUrl: 'managelanguage.html'
+  templateUrl: 'managelanguage.html',
+  styleUrls: ["managelanguage.scss"]
 })
 export class ManagelanguagePage {
   private defaultLanguageCode = "en";

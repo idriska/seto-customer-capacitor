@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<ion-list lines="none">
-		<ion-item  class="animated slideInRight" *ngFor="let ride of rides">
+		<ion-item class="animated slideInRight" *ngFor="let ride of rides">
 			<div class="item_header d-flex">
 				<div class="img_box center_img" (click)="tripInfo(ride)">
 					<img *ngIf="!ride.driver.user.image_url || !ride.driver.user.image_url.length"

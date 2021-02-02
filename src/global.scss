@@ -182,6 +182,7 @@ li {
 //}
 
 ion-button {
+  --background-activated: none;
   &.btn {
     font-size: 1.54rem;
     font-weight: 600;
@@ -211,6 +212,17 @@ ion-button {
       }
     }
   }
+}
+
+ion-item{
+  --background-activated: none;
+}
+
+.address_title{
+ --height: 20%;
+  position: absolute; 
+  top: 80%;
+  display: block;
 }
 
 .d-flex {
@@ -302,8 +314,6 @@ ion-header {
 
     ion-button {
       z-index: 999;
-      --margin: 0;
-      --padding: 0;
       min-width: unset;
       --padding-start: 0px;
       --background: transparent !important;
@@ -312,6 +322,12 @@ ion-header {
       ion-menu-button {
         --padding-start: 9px;
         font-size: 2.4rem;
+        color: var(--theme-color);
+      }
+
+      ion-back-button {
+        --padding-start: 9px;
+        font-size: 1.4rem;
         color: var(--theme-color);
       }
 
@@ -375,7 +391,7 @@ ion-header {
   }
 
   &.theme_header {
-    padding: 20px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     background: var(--bg-color);
 
     ion-toolbar {
@@ -570,10 +586,10 @@ ion-header {
     }
   }
 
-  .row {
+  ion-row {
     margin: 0 -7px;
 
-    .col {
+    ion-col {
       padding: 0 7px;
     }
   }
@@ -779,7 +795,7 @@ ion-menu {
   );
 
   .bg-color {
-    background: var(--bg-color);
+    --background: var(--bg-color);
   }
 
   ion-header.theme_header ion-toolbar ion-title h2 {

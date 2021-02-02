@@ -2,7 +2,6 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonUiElement } from '../../services/app.commonelements';
 import { Ride } from '../../models/ride.models';
 import { GoogleMaps } from '../../services/google-maps';
-import { Rate_ridePage } from '../rate_ride/rate_ride';
 import { Helper } from '../../models/helper.models';
 import { RouterWrapperService } from 'src/services/router-wrapper.service';
 // declare var google
@@ -11,7 +10,8 @@ import { RouterWrapperService } from 'src/services/router-wrapper.service';
 @Component({
   selector: 'page-trip_info',
   templateUrl: 'trip_info.html',
-  providers: [CommonUiElement]
+  providers: [CommonUiElement],
+  styleUrls: ["trip_info.scss"]
 })
 export class Trip_infoPage {
   @ViewChild('map') private mapElement: ElementRef;
@@ -29,7 +29,7 @@ export class Trip_infoPage {
     if (this.distanceUnit && this.distanceUnit.length) this.distanceUnit = this.distanceUnit.toLowerCase();
   }
 
-  ionViewDidLoad(): void {
+  ionViewDidEnter(): void {
     let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement, null).then(() => {
       this.plotPolyline();
     }).catch(err => {

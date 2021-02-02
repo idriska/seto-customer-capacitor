@@ -37,7 +37,7 @@ import { take, switchMap } from 'rxjs/operators';
 @Component({
   selector: "page-search",
   templateUrl: "search.html",
-  providers: [CommonUiElement, ClientService],
+  // providers: [CommonUiElement, ClientService],
   styleUrls: ['search.scss'],
 })
 export class SearchPage {

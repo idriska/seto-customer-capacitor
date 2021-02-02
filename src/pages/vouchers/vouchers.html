@@ -20,9 +20,9 @@
     </div>
     <ion-list lines="none">
         <ion-item *ngFor="let offer of offers">
-            <h2 *ngIf="offer.data && offer.data.length">{{offer.data}}</h2>
+            <h2 slot="start" *ngIf="offer.data && offer.data.length">{{offer.data}}</h2>
             <p *ngIf="!(offer.data && offer.data.length)">{{offer.description}} </p>
-            <h3 (click)="copyCode(offer.code)" item-end>{{offer.code}}</h3>
+            <h3 slot="end" (click)="copyCode(offer.code)" item-end>{{offer.code}}</h3>
         </ion-item>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

@@ -2,7 +2,8 @@
     ion-card {
         margin: 15px auto;
         margin-bottom: 0;
-        background: var(--item-bg);
+        background: white;
+        // background: var(--item-bg);
         position: relative;
         z-index: 999;
         width: calc(100% - 30px);
@@ -53,10 +54,12 @@
 
                             h3 {
                                 font-size: 1.25rem;
-                                color: var(--info);
+                                color: black;
+                                // color: var(--info);
                                 font-weight: 400;
                                 letter-spacing: 0.5px;
                                 line-height: 20px;
+                                margin: 2px 0;
                             }
 
                             h4 {
@@ -64,6 +67,7 @@
                                 font-size: 1.2rem;
                                 font-weight: 400;
                                 letter-spacing: 0.7px;
+                                margin: 2px 0;
                             }
                         }
                     }
@@ -80,6 +84,7 @@
                         h4 {
                             color: var(--white);
                             font-size: 1.45rem;
+                            margin: 2px 0;
 
                             ion-icon {
                                 color: var(--theme-color);
@@ -163,7 +168,8 @@
             }
 
             &.form {
-                border-top: 1px dashed var(--info);
+                // border-top: 1px dashed var(--info);
+                border-top: 1px dashed black;
                 position: relative;
 
                 &::after,
@@ -195,15 +201,11 @@
 
                     ion-icon {
                         display: inline;
-                        color: var(--bg-color);
+                        color: var(--theme-color);
                         width: 38px;
                         font-size: 4.5rem;
                         text-align: center;
                         margin: 0 5px;
-
-                        &.active {
-                            color: var(--theme-color);
-                        }
                     }
                 }
 
@@ -257,7 +259,8 @@
 
         .btn {
             height: 55px;
-            color: var(--white);
+            color: white;
+            // color: var(--white);
             font-weight: 400;
             font-size: 1.8rem;
         }
