@@ -77,20 +77,6 @@
 
       --ion-background-color: transparent !important;
 
-      // &::ng-deep {
-      //   .item-inner {
-      //     padding: 0;
-      //     min-height: unset;
-      //     border: none !important;
-      //     box-shadow: none !important;
-
-      //     .label {
-      //       margin: 0;
-      //       white-space: normal;
-      //     }
-      //   }
-      // }
-
       ion-icon {
         &.end {
           color: var(--theme-color) !important;
