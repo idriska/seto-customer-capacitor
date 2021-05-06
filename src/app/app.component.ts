@@ -6,16 +6,16 @@ import { Platform, AlertController, MenuController } from '@ionic/angular';
 import { TranslateService } from '../../node_modules/@ngx-translate/core';
 import { APP_CONFIG, AppConfig } from './app.config';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
-import { ClientService } from '../services/client.service';
-import { Constants } from '../models/constants.models';
-import { MyNotification } from '../models/notification.models';
-import { User } from '../models/user.models';
-import { CommonUiElement } from '../services/app.commonelements';
+import { ClientService } from './services/client.service';
+import { Constants } from './models/constants.models';
+import { MyNotification } from './models/notification.models';
+import { User } from './models/user.models';
+import { CommonUiElement } from './services/app.commonelements';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import firebase from 'firebase';
 import * as moment from 'moment';
-import { RouterWrapperService } from 'src/services/router-wrapper.service';
-import { Events } from 'src/services/event-handler.service';
+import { RouterWrapperService } from 'src/app/services/router-wrapper.service';
+import { Events } from 'src/app/services/event-handler.service';
 
 @Component({
   selector: 'app-root',

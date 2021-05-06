@@ -1,0 +1,31 @@
+<ion-header class="header_gradient">
+    <ion-toolbar>
+        <ion-button slot="start">
+            <ion-back-button text=""></ion-back-button>
+            <span (click)="close()" no-margin>{{'save_address' | translate}}</span>
+        </ion-button>
+        <ion-button slot="end" class="btn" [disabled]="modalPresented" (click)="save()">{{'continue' | translate}}</ion-button>
+    </ion-toolbar>
+
+    <div class="searchBox d-flex">
+        <!-- <ion-icon class="material-icons">place</ion-icon> -->
+        <ion-icon name="location-sharp"></ion-icon>
+        <ion-searchbar (ionInput)="searchPlace($event.target.value)" [(ngModel)]="query" placeholder="{{'search_address' | translate}}">
+        </ion-searchbar>
+        <ion-icon (click)="detect()" name="locate"></ion-icon>
+        <!-- <ion-icon (click)="detect()" class="material-icons end">gps_fixed</ion-icon> -->
+    </div>
+    <ion-list lines="none" class="search_option">
+        <ion-item *ngFor="let place of places" (click)="selectPlace(place)">{{place.description}}</ion-item>
+    </ion-list>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div #pleaseConnect id="please-connect">
+        <p>{{'loading' | translate}}</p>
+    </div>
+
+    <div #map id="map">
+        <ion-spinner></ion-spinner>
+    </div>
+</ion-content>

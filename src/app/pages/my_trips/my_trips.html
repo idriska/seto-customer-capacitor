@@ -1,0 +1,22 @@
+<ion-header class="theme_header">
+	<ion-toolbar>
+		<ion-button>
+			<ion-menu-button></ion-menu-button>
+		</ion-button>
+		<ion-title>
+			<h2>{{'my_rides' | translate}}</h2>
+			<p>{{'list_of_rides' | translate}}</p>
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+	<empty-card [message]="'empty_rides'" *ngIf="!isLoading && (!rides || !rides.length)"></empty-card>
+	
+	<ion-list lines="none">
+		<ride-card  *ngFor="let ride of rides" [ride] = "ride" (click)="tripInfo(ride)"></ride-card>
+	</ion-list>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,24 @@
+:host{
+
+    .empty-view {
+		width: 100%;
+		height: 130px;
+		top: 0%;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		bottom: 0%;
+		margin: auto;
+
+		img {
+			width: 100px;
+			margin: auto;
+		}
+
+		span {
+			display: block;
+			text-align: center;
+		}
+	}
+}

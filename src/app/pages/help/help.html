@@ -1,0 +1,28 @@
+<ion-header class="theme_header">
+    <ion-toolbar>
+        <ion-button>
+            <ion-menu-button></ion-menu-button>
+        </ion-button>
+        <ion-title>
+            <h2>{{'faqs' | translate}}</h2>
+            <p>{{'read_faqs_solutions' | translate}}</p>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <empty-card [message]="'no_faqs_to_show'" *ngIf="!isLoading && !faqs"></empty-card>
+    <ion-list lines="none" *ngIf="faqs | async; let faqs">
+        <ion-item class="animated slideInRight" *ngFor="let faq of faqs" 
+            [ngClass]="faq._id == curFaqId ? 'active' : '' " 
+            (click)="expandFaq(faq)">
+            <div class="item_cont" style="width: 100%;">
+                <h2 class="d-flex">{{faq.title}}
+                    <ion-icon name="chevron-down"></ion-icon>
+                </h2>
+                <h3 class="d-flex">{{faq.short_description}}</h3>
+                <p class="d-flex">{{faq.description}}</p>
+             </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

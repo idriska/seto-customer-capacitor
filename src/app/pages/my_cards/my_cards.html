@@ -1,0 +1,52 @@
+<ion-header class="bg-color theme_header">
+    <ion-toolbar>
+        <ion-button>
+            <ion-menu-button></ion-menu-button>
+        </ion-button>
+        <ion-title>
+            <ion-title>
+                <h2>{{titleToShow}}</h2>
+                <p>{{titleToShow}}</p>
+            </ion-title>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <empty-card [message]="'empty_cards'" *ngIf="!isLoading && (!myCards || !myCards.length)"></empty-card>
+    <div class="card_list">
+        <ion-card *ngFor="let card of myCards"
+            [ngClass]="(card.metadata && card.metadata.title == 'business') ? 'Business' : ''"
+            (click)="navAddCard(card)">
+            <div class="card_header d-flex">
+                <div class="card_chip">
+                    <img src="assets/imgs/chip.png">
+                </div>
+                <h2 class="end">
+                    {{ ((card.metadata && card.metadata.title == 'business') ? 'card_business' : 'card_personal') | translate}}
+                </h2>
+            </div>
+            <div class="card_content">
+                <h2>**** **** **** {{card.last4}}</h2>
+            </div>
+            <div class="card_footer">
+                <h3 class="d-flex">
+                    {{'card_holder_name' | translate}}
+                    <span class="end"> {{'valid_thruc' | translate}}</span>
+                </h3>
+                <h4 class="d-flex">
+                    {{card.name}}
+                    <span class="end"> {{card.exp_month}}/{{card.exp_year}}</span>
+                </h4>
+            </div>
+        </ion-card>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button expand="full" item-start class="btn ion-no-margin" (click)="navAddCard(null)">
+        <!-- <ion-icon class="material-icons">add</ion-icon>  -->
+        <ion-icon name="add-outline"></ion-icon>
+        {{'add_new_card' | translate}}
+    </ion-button>
+</ion-footer>

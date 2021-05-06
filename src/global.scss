@@ -219,10 +219,7 @@ ion-item{
 }
 
 .address_title{
- --height: 20%;
-  position: absolute; 
-  top: 80%;
-  display: block;
+  top: calc(100% - 276px);
 }
 
 .d-flex {

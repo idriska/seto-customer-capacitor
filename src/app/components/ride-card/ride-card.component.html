@@ -1,0 +1,42 @@
+<ion-item>
+  <div style="width: 100%;">
+      <div class="item_header d-flex">
+          <div class="img_box center_img">
+              <img *ngIf="!ride.driver.user.image || !ride.driver.user.image.length" src="assets/imgs/empty_dp.png"
+                  class="crop_img">
+              <img *ngIf="ride.driver.user.image && ride.driver.user.image.length" data-src="{{ride.driver.user.image}}"
+                  class="crop_img">
+          </div>
+          <div class="profile_details">
+              <h3 class="d-flex">
+                  {{ride.driver.user.name}}
+                  <span class="end" *ngIf="!ride.final_fare || ride.final_fare==0">{{currency}}
+                      {{ride.estimated_fare}}
+                  </span>
+                  <span class="end" *ngIf="ride.final_fare && ride.final_fare>0">{{currency}} {{ride.final_fare}}
+                  </span>
+              </h3>
+              <h4 class="d-flex">
+                {{ride.driver.car.model}}|{{ride.driver.car.color}}|{{ride.driver.car.construction_year}}, {{ride.driver.car.vehicle_number}}
+                <span class="end">{{ride.payment_method.title | translate}}</span>
+              </h4>
+              <h4 class="d-flex">
+                {{ride.updated_at}}
+                <span class="end" style="text-transform: capitalize;">{{ride.status | translate}}</span>
+            </h4>
+          </div>
+      </div>
+      <div class="rides_details">
+        <div class="d-flex item_box">
+            <ion-icon name="location-sharp"></ion-icon>
+            
+            <h6>{{ride.address_from}}</h6>
+        </div>
+        <div class="d-flex item_box">
+            <ion-icon name="navigate"></ion-icon>
+            
+            <h6>{{ride.address_to}}</h6>
+        </div>
+    </div>
+  </div>
+</ion-item>

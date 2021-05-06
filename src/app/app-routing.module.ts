@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { Add_addressPage } from 'src/pages/add_address/add_address';
-import { Add_cardPage } from 'src/pages/add_card/add_card';
-import { Add_moneyPage } from 'src/pages/add_money/add_money';
-import { BankTransfer } from 'src/pages/banktransfer/banktransfer';
-import { Contact_usPage } from 'src/pages/contact_us/contact_us';
-import { HelpPage } from 'src/pages/help/help';
-import { ManagelanguagePage } from 'src/pages/managelanguage/managelanguage';
-import { My_cardsPage } from 'src/pages/my_cards/my_cards';
-import { My_profilePage } from 'src/pages/my_profile/my_profile';
-import { My_tripsPage } from 'src/pages/my_trips/my_trips';
-import { Promo_codePage } from 'src/pages/promo_code/promo_code';
-import { Rate_ridePage } from 'src/pages/rate_ride/rate_ride';
-import { Saved_addressPage } from 'src/pages/saved_address/saved_address';
-import { SearchPage } from 'src/pages/search/search';
-import { SigninPage } from 'src/pages/signin/signin';
-import { SignupPage } from 'src/pages/signup/signup';
-import { Trip_infoPage } from 'src/pages/trip_info/trip_info';
-import { VerificationPage } from 'src/pages/verification/verification';
-import { VouchersPage } from 'src/pages/vouchers/vouchers';
-import { WalletPage } from 'src/pages/wallet/wallet';
+import { Add_addressPage } from 'src/app/pages/add_address/add_address';
+import { Add_cardPage } from 'src/app/pages/add_card/add_card';
+import { Add_moneyPage } from 'src/app/pages/add_money/add_money';
+import { BankTransfer } from 'src/app/pages/banktransfer/banktransfer';
+import { Contact_usPage } from 'src/app/pages/contact_us/contact_us';
+import { HelpPage } from 'src/app/pages/help/help';
+import { ManagelanguagePage } from 'src/app/pages/managelanguage/managelanguage';
+import { My_cardsPage } from 'src/app/pages/my_cards/my_cards';
+import { My_profilePage } from 'src/app/pages/my_profile/my_profile';
+import { My_tripsPage } from 'src/app/pages/my_trips/my_trips';
+import { Promo_codePage } from 'src/app/pages/promo_code/promo_code';
+import { Rate_ridePage } from 'src/app/pages/rate_ride/rate_ride';
+import { Saved_addressPage } from 'src/app/pages/saved_address/saved_address';
+import { SearchPage } from 'src/app/pages/search/search';
+import { SigninPage } from 'src/app/pages/signin/signin';
+import { SignupPage } from 'src/app/pages/signup/signup';
+import { Trip_infoPage } from 'src/app/pages/trip_info/trip_info';
+import { VerificationPage } from 'src/app/pages/verification/verification';
+import { VouchersPage } from 'src/app/pages/vouchers/vouchers';
+import { WalletPage } from 'src/app/pages/wallet/wallet';
 
 const routes: Routes = [
   {

@@ -1,0 +1,26 @@
+<ion-header class="theme_header">
+    <ion-toolbar>
+        <ion-button>
+            <ion-menu-button></ion-menu-button>
+        </ion-button>
+        <ion-title>
+            <h2>{{'vouchers' | translate}}</h2>
+            <p>{{'vouchers' | translate}}</p>
+        </ion-title>
+        
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="bg-color">
+    <empty-card [message]="'empty_offers'" *ngIf="!isLoading && (!offers || !offers.length)"></empty-card>
+    <ion-list lines="none">
+        <ion-item *ngFor="let offer of offers">
+            <h2 slot="start" *ngIf="offer.data && offer.data.length">{{offer.data}}</h2>
+            <p *ngIf="!(offer.data && offer.data.length)">{{offer.description}} </p>
+            <h3 slot="end" (click)="copyCode(offer.code)" item-end>{{offer.code}}</h3>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
