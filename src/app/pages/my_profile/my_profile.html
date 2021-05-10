@@ -3,12 +3,9 @@
         <ion-button>
             <ion-menu-button></ion-menu-button>
         </ion-button>
-
-        <!-- <ion-icon class="material-icons"  (click)="managelanguage()">translate</ion-icon> -->
         <ion-icon name="language" (click)="managelanguage()"></ion-icon>
         <ion-title>
-            <h2>{{'my_profile' | translate}}</h2>
-            <p>{{'your_account_details' | translate}}</p>
+            <headings [title]="'my_profile'" [subTitle]="'your_account_details'"></headings>
         </ion-title>
     </ion-toolbar>
 </ion-header>

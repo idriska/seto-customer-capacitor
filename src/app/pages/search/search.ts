@@ -57,7 +57,6 @@ export class SearchPage {
   private locationDestination: MyLocation;
   private initialized: boolean;
   private fabAction: boolean;
-  private fabFooterAction: boolean;
   private cardSelected: MyCard;
   private payment_method: string = "cash";
   private couponCodeToApply: string = "";
@@ -1106,83 +1105,6 @@ export class SearchPage {
     this.fabAction = !this.fabAction;
   }
 
-  callRider() {
-    this.callNumber
-      .callNumber(this.ride.driver.user.mobile_number, true)
-      .then((res) => console.log("Launched dialer!", res))
-      .catch((err) => console.log("Error launching dialer", err));
-  }
-
-  confirmCancel() {
-    this.translate
-      .get(["cancel_ride_title", "cancel_ride_message", "no", "yes"])
-      .subscribe(async (text) => {
-        let alert = await this.alertCtrl.create({
-          header: text["cancel_ride_title"],
-          message: text["cancel_ride_message"],
-          buttons: [
-            {
-              text: text["no"],
-              role: "cancel",
-              handler: () => {
-                console.log("Cancel clicked");
-              },
-            },
-            {
-              text: text["yes"],
-              handler: () => {
-                this.translate
-                  .get(["just_moment", "request_fail"])
-                  .subscribe((values) => {
-                    this.cue.presentLoading(values["just_moment"]);
-
-                    this.dataService.resources.rides
-                      .patch(this.ride._id, {
-                        status: "cancelled",
-                      })
-                      .subscribe(
-                        (res) => {
-                          this.cue.dismissLoading();
-                          this.clearToPhase(1);
-                        },
-                        (err) => {
-                          console.log("cancel_err", err);
-                          this.cue.dismissLoading();
-                          this.cue.presentErrorAlert(values["request_fail"]);
-                        }
-                      );
-
-                    // this.subscriptions.push(
-                    //   this.clientService
-                    //     .rideCancel(
-                    //       window.localStorage.getItem(Constants.KEY_TOKEN),
-                    //       this.ride.id
-                    //     )
-                    //     .subscribe(
-                    //       (res) => {
-                    //         this.cue.dismissLoading();
-                    //         // this.rideRef.set(res);
-                    //         this.clearToPhase(1);
-                    //       },
-                    //       (err) => {
-                    //         console.log("cancel_err", err);
-                    //         this.cue.dismissLoading();
-                    //         this.cue.presentErrorAlert(values["request_fail"]);
-                    //       }
-                    //     )
-                    // );
-                  });
-              },
-            },
-          ],
-        });
-        alert.present();
-      });
-  }
-
-  toggleFab() {
-    this.fabFooterAction = !this.fabFooterAction;
-  }
   buyThisApp() {
     this.translate.get("opening_WhatsApp").subscribe((text) => {
       this.cue.presentLoading(text);
@@ -1208,10 +1130,11 @@ export class SearchPage {
     this.translate.get("just_moment").subscribe((value) => {
       this.cue.presentLoading(value);
       this.dataService.resources.rides
-        .patch(this.ride._id, { status })
+        .patch(this.ride._id, { status: status })
         .toPromise()
         .then(() => {
-          this.isAccept = true;
+          if (status === "cancelled") this.clearToPhase(1);
+          else this.isAccept = true;
           this.cue.dismissLoading();
         })
         .catch((err) => {

@@ -58,6 +58,10 @@ import { CommonService } from "./services/common.service";
 
 import { EmptyCardComponent } from './components/empty-card/empty-card.component';
 import { RideCardComponent } from './components/ride-card/ride-card.component';
+import { HeadingsComponent } from './components/headings/headings.component';
+import { MapCardComponent } from './components/map-card/map-card.component';
+import { RideInfoComponent } from './components/ride-info/ride-info.component';
+
 
 registerLocaleData(localeDe);
 
@@ -91,7 +95,10 @@ export function createTranslateLoader(http: HttpClient) {
     Address_titlePage,
 
     EmptyCardComponent,
-    RideCardComponent
+    RideCardComponent,
+    HeadingsComponent,
+    MapCardComponent,
+    RideInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,155 @@
+<div
+        [ngClass]="fabFooterAction ? 'container active animated slideInUp delay_3' : 'container'">
+
+<ion-list class="animated slideInUp delay_5" style="margin-bottom: 15px;" lines="none">
+
+  <ion-item class="d-flex" (click)="toggleFab()"> 
+  <div class="img_box center_img" slot="start">
+      <img *ngIf="!ride.driver.user.image"
+          src="assets/imgs/empty_dp.png" class="crop_img">
+      <img *ngIf="ride.driver.user.image"
+          data-src="{{ride.driver.user.image}}" class="crop_img">
+  </div>
+  <div class="item_cont">
+      <h2 class="d-flex">
+          <span>{{ride.driver.user.name}}</span>
+          <ion-badge class="end">{{ride.driver.user.ratings}}
+              <ion-icon name="star"></ion-icon>
+          </ion-badge>
+      </h2>
+      <h3 class="d-flex">{{ride.driver.vehicle_type.title}}
+
+          <ng-container *ngIf="page==='search'" >
+            <span class="end" *ngIf="ride.status != 'pending_accept'">{{'status' | translate}}</span>
+            <span class="end" *ngIf="ride.status == 'pending_accept'">{{'final_amount' | translate}}</span>
+          </ng-container>
+          
+          <span *ngIf="page==='trip_info'" class="end">{{'booked_on' | translate}}</span>
+
+      </h3>
+      <h4 class="d-flex">{{ride.driver.car.vehicle_number}}
+          <ng-container *ngIf="page==='search'" >
+            <span class="end" *ngIf="ride.status != 'pending_accept'">{{ ('ride_status_'+ride.status) | translate}}</span>
+            <span class="end" *ngIf="ride.status == 'pending_accept'">{{currency}} {{ride.estimated_fare}}</span>
+          </ng-container>
+          <span *ngIf="page==='trip_info'" class="end">{{ride.created_at}}</span>
+      </h4>
+  </div>
+  
+</ion-item>
+
+<ng-container *ngIf="page==='search'" >
+  <ion-item *ngIf="ride.status == 'accepted'" style="padding: 0 13px;">
+    <h5 class="d-flex" style="margin: 0">{{'estimated_pickup_time' | translate}}
+        <span class="end">
+            ({{ride.estimated_pickup_time}} {{'mins' | translate}})
+        </span>
+    </h5>
+  </ion-item>
+</ng-container>
+
+<ion-item>
+  <div class="item_cont">
+      <h5 class="d-flex">{{'ride_info' | translate}}
+          <span class="end">
+              <strong>{{ride.estimated_distance}} {{distanceUnit}}</strong>
+              <ng-container *ngIf="page==='search'" >
+                ({{ride.estimated_time}} {{'mins' | translate}})
+              </ng-container>
+          </span>
+      </h5>
+      <div class="d-flex item_box">
+          <ion-icon name="location-sharp"></ion-icon>
+          <p>{{ride.address_from}}</p>
+      </div>
+      <div class="d-flex item_box">
+          <ion-icon name="navigate"></ion-icon>
+          <p>{{ride.address_to}}</p>
+      </div>
+  </div>
+</ion-item>
+
+<ion-item class="ride_details">
+  <ion-row>
+    <ion-col size="4">
+      <h5>{{'payment_via' | translate}}</h5>
+      <h2 class="d-flex">
+        
+        <ng-container *ngIf="page==='trip_info'" >
+          <ion-icon *ngIf="ride.payment_method.slug == 'cash'" name="wallet"></ion-icon>
+          <ion-icon *ngIf="ride.payment_method.slug == 'wallet'" name="wallet"></ion-icon>
+        </ng-container>
+        <ion-icon *ngIf="page==='search'" name="wallet"></ion-icon>
+        {{ride.payment_method.title | translate}}
+      </h2>
+    </ion-col>
+    <ion-col size="4">
+      <h5>{{'ride_fare' | translate}}</h5>
+      <h2 class="d-flex">
+        <ng-container *ngIf="page==='trip_info'" >
+          <ion-icon *ngIf="ride.payment_method.slug == 'cash'" name="wallet"></ion-icon>
+          <ion-icon *ngIf="ride.payment_method.slug == 'wallet'" name="wallet"></ion-icon>
+          <div *ngIf="!ride.final_fare || ride.final_fare==0">{{currency}} {{ride.estimated_fare}}</div>
+          <div *ngIf="ride.final_fare && ride.final_fare>0">{{currency}} {{ride.final_fare}}</div>
+        </ng-container>
+        
+        <ion-icon *ngIf="page==='search'" name="wallet"></ion-icon>
+        {{currency}} {{ride.estimated_fare}}
+      </h2>
+    </ion-col>
+    <ion-col size="4">
+      <h5>{{'ride_type' | translate}}</h5>
+      <h2 class="d-flex">
+        <ion-icon name="car-sport"></ion-icon>
+        {{ride.vehicle_type.title}}
+      </h2>
+    </ion-col>
+  </ion-row>
+</ion-item>
+</ion-list>
+
+<div class="btn_box">
+  <ion-row justify-content-end>
+    <ng-container *ngIf="page==='search'">
+      <ion-col size="4" *ngIf="ride.status == 'pending_accept' && !isAccept" (click)="updateRideStatus('accept_payment')">
+        <h2>
+            <ion-icon name="checkmark"></ion-icon>
+            {{'accept_invoice' | translate}}
+        </h2>
+    </ion-col>
+    <ion-col size="4" (click)="callRider()">
+        <h2>
+            <ion-icon name="call"></ion-icon>
+            {{'call_now' | translate}}
+        </h2>
+    </ion-col>
+    <ion-col *ngIf="ride.status == 'pending' || ride.status == 'accepted' || ride.status == 'onway'" size="4"
+        (click)="confirmCancel()">
+        <h2>
+            <ion-icon name="close"></ion-icon>
+            {{'cancel' | translate}}
+        </h2>
+    </ion-col>
+    </ng-container>
+    <ng-container *ngIf="page==='trip_info'" >
+      <ion-col size="4">
+				<h2 *ngIf="ride.status=='complete' && ride.myRating == -1" (click)="rateRider(ride)">
+					<ion-icon name="star-outline"></ion-icon>
+					{{'rate_rider' | translate}}
+				</h2>
+				<h2 *ngIf="ride.status=='complete' && ride.myRating != -1">
+					<ion-icon name="star"></ion-icon>
+					{{'rated_rider' | translate}} {{ride.myRating}}&#9734;
+				</h2>
+			</ion-col>
+    </ng-container>
+      <ion-col size="4">
+          <h2 (click)="toggleFab()" class="more_less_btn">
+              <ion-icon [name]="!fabFooterAction ? 'chevron-up' : 'chevron-down'"></ion-icon>
+              <span *ngIf="!fabFooterAction">{{ "more" | translate }}</span>
+              <span *ngIf="fabFooterAction">{{ "less" | translate }}</span>
+          </h2>
+      </ion-col>
+  </ion-row>
+</div>
+</div>

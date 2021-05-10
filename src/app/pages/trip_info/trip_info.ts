@@ -17,7 +17,6 @@ export class Trip_infoPage {
   @ViewChild('map') private mapElement: ElementRef;
   @ViewChild('pleaseConnect') private pleaseConnect: ElementRef;
   private ride: Ride;
-  private fabAction: boolean;
   private distanceUnit: string;
   private currency: string;
 
@@ -82,10 +81,6 @@ export class Trip_infoPage {
         directionsDisplay.setDirections(result);
       }
     });
-  }
-
-  toggleFab() {
-    this.fabAction = !this.fabAction;
   }
 
   rateRider(ride) {

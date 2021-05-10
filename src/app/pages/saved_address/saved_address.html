@@ -4,8 +4,7 @@
             <ion-menu-button></ion-menu-button>
         </ion-button>
         <ion-title>
-            <h2>{{'saved_address' | translate}}</h2>
-            <p>{{ (pick ? 'select_address' : 'pre_save_address_for_faster_cab_booking_pricess') | translate}}</p>
+            <headings [title]="'saved_address'" [subTitle]="pick ? 'select_address' : 'pre_save_address_for_faster_cab_booking_pricess'"></headings>
         </ion-title>
     </ion-toolbar>
 </ion-header>
